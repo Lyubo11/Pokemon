@@ -61,10 +61,9 @@ public class Player {
 
     @Override
     public String toString() {
-        return "Player{" +
-                "userName='" + userName + '\'' +
-                ", level=" + playerLevel +
-                ", experience=" + experience +
-                '}';
+        return "Player's info:" +
+                "\nTrainer's name: " + userName +
+                "\nLevel: " + playerLevel +
+                "\nExperience: " + experience;
     }
 }
