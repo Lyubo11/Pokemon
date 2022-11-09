@@ -33,9 +33,8 @@ public class Battle{
 
     @Override
     public String toString() {
-        return "Battle{" +
-                "battlePokemons=" + battlePokemons +
-                ", battlePlayers=" + battlePlayers +
-                '}';
+        return "Battle's info:'" +
+                "\nBattle pokemons: " + battlePokemons +
+                "\nBattle players: " + battlePlayers;
     }
 }

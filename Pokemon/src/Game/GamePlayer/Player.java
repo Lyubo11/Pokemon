@@ -35,7 +35,7 @@ public class Player {
         if (playerLevel >= 0) {
             this.playerLevel = playerLevel;
         } else {
-            System.out.println("Invalid level input.");
+            System.out.println("Invalid level input!");
         }
 
     }
@@ -48,7 +48,7 @@ public class Player {
         if (experience >= 0.0) {
             this.experience = experience;
         } else {
-            System.out.println("Invalid experience input.");
+            System.out.println("Invalid experience input!");
         }
 
     }
@@ -71,10 +71,9 @@ public class Player {
 
     @Override
     public String toString() {
-        return "Player{" +
-                "userName='" + userName + '\'' +
-                ", level=" + playerLevel +
-                ", experience=" + experience +
-                '}';
+        return "Trainer's info" +
+                "\nUser's Name: " + userName +
+                "\nLevel: " + playerLevel +
+                "\nExperience: " + experience;
     }
 }

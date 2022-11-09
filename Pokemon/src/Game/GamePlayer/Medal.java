@@ -32,10 +32,9 @@ public class Medal {
 
     @Override
     public String toString() {
-        return "Medal{" +
-                "medalName='" + medalName + '\'' +
-                ", description='" + description + '\'' +
-                ", medalClasses=" + medalClasses +
-                '}';
+        return "Medal's info:'" +
+                "\nMedal name: " + medalName +
+                "\nDescription: " + description +
+                "\nMedal classes: " + medalClasses;
     }
 }
