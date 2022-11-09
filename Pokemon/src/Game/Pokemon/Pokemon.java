@@ -9,6 +9,6 @@ public class Pokemon {
     public static int maxHP;
     private int height;
     private int weight;
-    private List<Attack> attacks;
+    private List<Ability> abilities;
 
 }
