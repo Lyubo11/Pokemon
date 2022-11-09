@@ -1,7 +1,6 @@
 package Game.GameBattle;
 
 import Game.GamePlayer.Player;
-import Game.Pokemon.Pokemon;
 
 import java.util.List;
 

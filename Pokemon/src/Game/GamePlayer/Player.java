@@ -1,7 +1,5 @@
 package Game.GamePlayer;
 
-import Game.Pokemon.Pokemon;
-
 import java.util.List;
 
 public class Player {
