@@ -1,6 +1,5 @@
 package Game.Pokemon;
 
-import java.util.List;
 import java.util.Random;
 
 public class Pokemon {
@@ -10,15 +9,17 @@ public class Pokemon {
     public static int maxHP;
     private double height;
     private double weight;
-    private List<Attack> attacks;
+    private int attack;
+    private int defense;
 
-    public Pokemon(String name, int pokemonLevel, int HP, double height, double weight) {     //TODO List<Attack>attacks
+    public Pokemon(String name, int pokemonLevel, int HP, double height, double weight, int attack, int defense) {
         this.name = name;
         this.pokemonLevel = pokemonLevel;
         this.HP = HP;
         this.height = height;
         this.weight = weight;
-//      TODO  this.attacks = attacks;
+        this.attack = attack;
+        this.defense = defense;
     }
 
     public String getName() {
@@ -91,18 +92,60 @@ public class Pokemon {
         this.weight = weight;
     }
 
-    public List<Attack> getAttacks() {
-        return attacks;
+    public int getAttack() {
+        return attack;
     }
 
-    public void setAttacks(List<Attack> attacks) {
-        this.attacks = attacks;
+    public void setAttack(int attack) {
+        if (attack < 10) {
+            System.out.println("Your pokemon must have at least 10 attack damage! \nTry again, buddy!");
+        } else if (attack > 190) {
+            System.out.println("Your pokemon can not have more than 190 attack damage! \nTry again, buddy!");
+        } else {
+            System.out.println("Your pokemon has " + attack + " attack damage! \nLet's go, buddy!");
+        }
+        this.attack = attack;
     }
 
-    public int attacking() {
+    public int getDefense() {
+        return defense;
+    }
+
+    public void setDefense(int defense) {
+        if (defense < 5) {
+            System.out.println("Your pokemon must have at least 5 defense! \nTry again, buddy!");
+        } else if (defense > 230) {
+            System.out.println("Your pokemon can not have more than 190 defense! \nTry again, buddy!");
+        } else {
+            System.out.println("Your pokemon has " + defense + " defense! \nLet's go, buddy!");
+        }
+        this.defense = defense;
+    }
+
+    public String attacking() {
         Random rand = new Random();
-        setHP(getHP() - (rand.nextInt(25) + 20));
-        return this.HP;
+        if (this.pokemonLevel > 0 && this.pokemonLevel <= 20) {
+            setHP(getHP() - (rand.nextInt(10) + 10));
+        } else if (this.pokemonLevel > 20 && this.pokemonLevel <= 40) {
+            setHP(getHP() - (rand.nextInt(20) + 10));
+        } else if (this.pokemonLevel > 40 && this.pokemonLevel <= 60) {
+            setHP(getHP() - (rand.nextInt(20) + 20));
+        } else if (this.pokemonLevel > 60 && this.pokemonLevel <= 80) {
+            setHP(getHP() - (rand.nextInt(25) + 20));
+        } else if (this.pokemonLevel > 80 && this.pokemonLevel <= 99) {
+            setHP(getHP() - (rand.nextInt(30) + 20));
+        }else if (this.pokemonLevel == 100) {
+            setHP(getHP() - (rand.nextInt(40) + 40));
+        } else {
+            return "Your pokemon's level must be between level 1 and 100!";
+        }
+        return "Your HP now is: " + this.HP;
+    }
+
+    public void fallingBellow0HP() {
+        if (this.HP <= 0) {
+            System.out.println("Your pokemon died! :c \n(HP fell bellow 0)");
+        }
     }
 
     @Override
@@ -113,6 +156,7 @@ public class Pokemon {
                 "\nHP: " + HP +
                 "\nHeight: " + height +
                 "\nWeight: " + weight +
-                "\nAttacks: " + attacks;
+                "\nAttacks: " + attack +
+                "\nDefense: " + defense;
     }
 }
