@@ -32,7 +32,12 @@ public class Player {
     }
 
     public void setPlayerLevel(int playerLevel) {
-        this.playerLevel = playerLevel;
+        if (playerLevel >= 0) {
+            this.playerLevel = playerLevel;
+        } else {
+            System.out.println("Invalid level input.");
+        }
+
     }
 
     public double getExperience() {
@@ -40,7 +45,12 @@ public class Player {
     }
 
     public void setExperience(double experience) {
-        this.experience = experience;
+        if (experience >= 0.0) {
+            this.experience = experience;
+        } else {
+            System.out.println("Invalid experience input.");
+        }
+
     }
 
     public List<Pokemon> getPokemons() {
