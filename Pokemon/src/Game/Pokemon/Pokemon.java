@@ -122,7 +122,7 @@ public class Pokemon {
         this.defense = defense;
     }
 
-    public String attacking() {
+    public String attacking() {     //TODO look at the code structure
         Random rand = new Random();
         if (this.pokemonLevel > 0 && this.pokemonLevel <= 20) {
             setHP(getHP() - (rand.nextInt(10) + 10));
