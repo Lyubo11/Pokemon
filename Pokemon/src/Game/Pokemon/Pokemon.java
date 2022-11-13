@@ -1,6 +1,5 @@
 package Game.Pokemon;
 
-import java.lang.ref.PhantomReference;
 import java.util.Random;
 
 public abstract class Pokemon implements Pokemonable {
