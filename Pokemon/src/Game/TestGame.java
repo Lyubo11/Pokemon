@@ -6,6 +6,7 @@ import Game.GamePlayer.Prize;
 import Game.Pokemon.Pokemon;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -28,15 +29,15 @@ public class TestGame {
             System.out.println(i + ". " + game.getAllPokemons().get(i-1));
             System.out.println();
         }
-
-        //TODO още няколко обекта от покемонм след което да ги принтна в main и с цифрички да се избира кой покемон всеки от играчите иска за битката му
-        //като се избере цифра да се добавя в battlePokemons list-a
-        //TODO да направим различни видове покемони(класове) които да наследяват Pokemon класа за да имаме пример за наследяване в проекта
-        //както и да е абстрактен Pokemon за да имаме абстракция.
     }
 
-    public static void choosePokemon(Game game, int choice) {
-        game.getBattle().getBattlePokemons().add(game.getAllPokemons().get(choice-1));  //TODO да ги преместя в game класа
+    public static void makeThreePokemonChoices(int choice, Game newGame, Scanner sc) {
+        System.out.println("Pick three pokemons.");
+        for (int i = 0; i < 3; i++) {
+            choice = sc.nextInt();
+            newGame.choosePokemon(choice);
+            System.out.println();
+        }
     }
 
     public static void main(String[] args) {
@@ -44,14 +45,19 @@ public class TestGame {
         Scanner sc = new Scanner(System.in);
         System.out.println("Press 'ENTER' to start the game!");
         sc.nextLine();
-        Battle newBattle = new Battle(new ArrayList<>(), new ArrayList<>());
-        Player player = new Player("pokemontrainer123", 20, 350, new ArrayList<>(), new ArrayList<>());
+        //my game objects
         Prize prize = new Prize("Destroyer", "Destroyed all his opponent's pokemons.");
-        Game newGame = new Game(newBattle, player, prize, new ArrayList<>());
-        System.out.println("Pick three pokemons.");
+        Player player = new Player("pokemontrainer123", 20, 350, new ArrayList<>(), new ArrayList<>());
+        Player computer = new Player("bot-pokemontrainer123", 1, 10, player.getPokemons(), new ArrayList<>());
+        Battle newBattle = new Battle(new ArrayList<>(Arrays.asList(player,computer)));
+        Game newGame = new Game(newBattle, newBattle.getBattlePlayers(), prize, new ArrayList<>());
         listOfPokemons(newGame);
-        int choice = sc.nextInt();
-
-        choosePokemon(newGame, choice);
+        int choice = 0;
+        makeThreePokemonChoices(choice, newGame, sc);
+        newBattle.listOfPlayerPokemons();
+        System.out.println("Choose a pokemon for the round.");
+        choice = sc.nextInt();
+        System.out.println(newBattle.choosePokemonForRound(choice)); //тест
+        newGame.startGame(choice); //TODO..... not done
     }
 }

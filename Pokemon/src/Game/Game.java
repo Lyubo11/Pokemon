@@ -10,23 +10,23 @@ import java.util.List;
 public class Game implements Gameable, Winable, Messagable {
 
     private Battle battle;
-    private Player player;
+    private List<Player> players;
     private Prize prize;
     private List<Pokemon> allPokemons;
     public static final int battlesCount = 5;
 
-    public Game(Battle battle, Player player, Prize prize, List<Pokemon> allPokemons) {
+    public Game(Battle battle, List<Player> players, Prize prize, List<Pokemon> allPokemons) {
         this.battle = battle;
-        this.player = player;
+        this.players = players;
         this.prize = prize;
         this.allPokemons = allPokemons;
     }
 
     @Override
-    public void startGame() {
+    public void startGame(int choice) {
 
         for (int i = 1; i <= battlesCount; i++) {
-
+            getBattle().startBattle(choice);
         }
     }
 
@@ -65,6 +65,17 @@ public class Game implements Gameable, Winable, Messagable {
 
     }
 
+    public boolean choosePokemon(int choice) {
+        if (choice >= 1 && choice <= 5) {
+            getPlayers().get(0).getPokemons().add(getAllPokemons().get(choice-1));
+            System.out.println("Successfully added pokemon #" + choice + " to your battle pokemons.");
+            return true;
+        } else {
+            System.out.println("There's no such pokemon number.");
+            return false;
+        }
+    }
+
     public Battle getBattle() {
         return battle;
     }
@@ -73,12 +84,12 @@ public class Game implements Gameable, Winable, Messagable {
         this.battle = battle;
     }
 
-    public Player getPlayer() {
-        return player;
+    public List<Player> getPlayers() {
+        return players;
     }
 
-    public void setPlayer(Player player) {
-        this.player = player;
+    public void setPlayers(List<Player> players) {
+        this.players = players;
     }
 
     public Prize getPrize() {

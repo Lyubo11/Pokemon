@@ -6,21 +6,12 @@ import Game.Pokemon.Pokemon;
 import java.util.List;
 
 public class Battle implements Battleable{
-    private List<Pokemon> battlePokemons;
-    public static final int roundsCount = 5;
+
     private List<Player> battlePlayers;
+    public static final int roundsCount = 5;
 
-    public Battle(List<Pokemon> battlePokemons, List<Player> battlePlayers) {
-        this.battlePokemons = battlePokemons;
+    public Battle(List<Player> battlePlayers) {
         this.battlePlayers = battlePlayers;
-    }
-
-    public List<Pokemon> getBattlePokemons() {
-        return battlePokemons;
-    }
-
-    public void setBattlePokemons(List<Pokemon> battlePokemons) {
-        this.battlePokemons = battlePokemons;
     }
 
     public List<Player> getBattlePlayers() {
@@ -32,16 +23,31 @@ public class Battle implements Battleable{
     }
 
     @Override
-    public String toString() {
-        return "Battle's info:'" +
-                "\nBattle pokemons: " + battlePokemons +
-                "\nBattle players: " + battlePlayers;
+    public void startBattle(int choice) {
+        for (int i = 1; i <= roundsCount; i++) {
+            choosePokemonForRound(choice); //TODO not done
+            for (Player player:getBattlePlayers()) {
+
+            }
+        }
     }
 
-    @Override
-    public void startBattle() {
-        for (int i = 1; i <= roundsCount; i++) {
+    public int choosePokemonForRound(int choice) {
+        if (choice >= 1 && choice <= 3) {
+            return choice - 1;
+        } else {
+            return -1;
+        }
 
+    }
+
+    public void listOfPlayerPokemons() {
+        Player player = getBattlePlayers().get(0);
+        int pokemonNum = 1;
+        for (Pokemon pokemon:player.getPokemons()) {
+            System.out.println("#" + pokemonNum + pokemon);
+            System.out.println();
+            pokemonNum++;
         }
     }
 

@@ -76,8 +76,4 @@ public class Player{
                 "\nLevel: " + playerLevel +
                 "\nExperience: " + experience;
     }
-
-    public void choosePokemon() {
-
-    }
 }

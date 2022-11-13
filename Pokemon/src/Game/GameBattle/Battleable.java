@@ -1,6 +1,6 @@
 package Game.GameBattle;
 
 public interface Battleable {
-    void startBattle();
+    void startBattle(int choice);
     void endBattle();
 }
