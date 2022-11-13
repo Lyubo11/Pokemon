@@ -40,7 +40,9 @@ public class Battle implements Battleable{
 
     @Override
     public void startBattle() {
+        for (int i = 1; i <= roundsCount; i++) {
 
+        }
     }
 
     @Override
