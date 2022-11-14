@@ -31,20 +31,10 @@ public class TestGame {
         }
     }
 
-    public static void makeThreePokemonChoices(int choice, Game newGame, Scanner sc) {
-        System.out.println("Pick three pokemons.");
-        for (int i = 0; i < 3; i++) {
-            choice = sc.nextInt();
-            newGame.choosePokemon(choice);
-            System.out.println();
-        }
-    }
-
     public static void main(String[] args) {
         System.out.println("-- WELCOME TO POKEMON --");
-        Scanner sc = new Scanner(System.in);
         System.out.println("Press 'ENTER' to start the game!");
-        sc.nextLine();
+        Game.userInput.nextLine();
         //my game objects
         Prize prize = new Prize("Destroyer", "Destroyed all his opponent's pokemons.");
         Player player = new Player("pokemontrainer123", 20, 350, new ArrayList<>(), new ArrayList<>());
@@ -52,12 +42,6 @@ public class TestGame {
         Battle newBattle = new Battle(new ArrayList<>(Arrays.asList(player,computer)));
         Game newGame = new Game(newBattle, newBattle.getBattlePlayers(), prize, new ArrayList<>());
         listOfPokemons(newGame);
-        int choice = 0;
-        makeThreePokemonChoices(choice, newGame, sc);
-        newBattle.listOfPlayerPokemons();
-        System.out.println("Choose a pokemon for the round.");
-        choice = sc.nextInt();
-        System.out.println(newBattle.choosePokemonForRound(choice)); //тест
-        newGame.startGame(choice); //TODO..... not done
+        newGame.startGame();
     }
 }

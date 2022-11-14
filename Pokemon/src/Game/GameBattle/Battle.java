@@ -1,9 +1,12 @@
 package Game.GameBattle;
 
+import Game.Game;
 import Game.GamePlayer.Player;
 import Game.Pokemon.Pokemon;
 
 import java.util.List;
+import java.util.Random;
+import java.util.Scanner;
 
 public class Battle implements Battleable{
 
@@ -23,13 +26,33 @@ public class Battle implements Battleable{
     }
 
     @Override
-    public void startBattle(int choice) {
+    public void startBattle() {
+        int choice = 0;
+        Random rand = new Random();
+        int computerChoice = 0;
         for (int i = 1; i <= roundsCount; i++) {
-            choosePokemonForRound(choice); //TODO not done
-            for (Player player:getBattlePlayers()) {
+            listOfPlayerPokemons();
+            computerChoice = rand.nextInt(3) + 1;
+            System.out.println("Choose a pokemon for the round: ");
+            choice = Game.userInput.nextInt();
+            System.out.println(choosePokemonForRound(choice));
+            System.out.println(choosePokemonForRound(computerChoice));
 
+            for (Player player:getBattlePlayers()) {
+                System.out.println(player.getPokemons().get(getFormattedChoice(player, choice, computerChoice)).getName());
             }
         }
+    }
+
+    public int getFormattedChoice(Player player, int choice, int computerChoice) {
+        int formattedChoice = 0;
+        if (player.getUserName().startsWith("bot-")) {
+            formattedChoice = choosePokemonForRound(computerChoice);
+        } else {
+            formattedChoice = choosePokemonForRound(choice);
+        }
+
+        return formattedChoice;
     }
 
     public int choosePokemonForRound(int choice) {

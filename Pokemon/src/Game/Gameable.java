@@ -1,7 +1,7 @@
 package Game;
 
 public interface Gameable {
-    void startGame(int choice);
+    void startGame();
     void winGame();
     void loseGame();
 

@@ -6,6 +6,7 @@ import Game.GamePlayer.Prize;
 import Game.Pokemon.Pokemon;
 
 import java.util.List;
+import java.util.Scanner;
 
 public class Game implements Gameable, Winable, Messagable {
 
@@ -14,6 +15,7 @@ public class Game implements Gameable, Winable, Messagable {
     private Prize prize;
     private List<Pokemon> allPokemons;
     public static final int battlesCount = 5;
+    public static Scanner userInput = new Scanner(System.in).useDelimiter("\\R");
 
     public Game(Battle battle, List<Player> players, Prize prize, List<Pokemon> allPokemons) {
         this.battle = battle;
@@ -22,11 +24,21 @@ public class Game implements Gameable, Winable, Messagable {
         this.allPokemons = allPokemons;
     }
 
-    @Override
-    public void startGame(int choice) {
+    public void makeThreePokemonChoices() {
+        System.out.println("Pick three pokemons.");
+        int choice = 0;
+        for (int i = 0; i < 3; i++) {
+            choice = userInput.nextInt();
+            choosePokemon(choice);
+            System.out.println();
+        }
+    }
 
+    @Override
+    public void startGame() {
+        makeThreePokemonChoices();
         for (int i = 1; i <= battlesCount; i++) {
-            getBattle().startBattle(choice);
+            getBattle().startBattle();
         }
     }
 

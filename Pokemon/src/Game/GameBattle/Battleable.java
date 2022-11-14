@@ -1,6 +1,8 @@
 package Game.GameBattle;
 
+import java.util.Scanner;
+
 public interface Battleable {
-    void startBattle(int choice);
+    void startBattle();
     void endBattle();
 }
