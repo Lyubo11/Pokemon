@@ -4,19 +4,19 @@ import Game.Pokemon.Pokemon;
 
 import java.util.List;
 
-public class Player {
+public class Player{
     private String userName;
     private int playerLevel;
     private double experience;
     private List<Pokemon> pokemons;
-    private List<Medal> wonMedals;
+    private List<Prize> wonPrizes;
 
-    public Player(String userName, int playerLevel, double experience, List<Pokemon> pokemons, List<Medal> wonMedals) {
+    public Player(String userName, int playerLevel, double experience, List<Pokemon> pokemons, List<Prize> wonPrizes) {
         this.userName = userName;
         this.playerLevel = playerLevel;
         this.experience = experience;
         this.pokemons = pokemons;
-        this.wonMedals = wonMedals;
+        this.wonPrizes = wonPrizes;
     }
 
     public String getUserName() {
@@ -61,12 +61,12 @@ public class Player {
         this.pokemons = pokemons;
     }
 
-    public List<Medal> getWonMedals() {
-        return wonMedals;
+    public List<Prize> getWonMedals() {
+        return wonPrizes;
     }
 
-    public void setWonMedals(List<Medal> wonMedals) {
-        this.wonMedals = wonMedals;
+    public void setWonMedals(List<Prize> wonPrizes) {
+        this.wonPrizes = wonPrizes;
     }
 
     @Override

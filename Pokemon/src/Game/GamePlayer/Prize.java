@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class Medal {
+public class Prize {
     private String medalName;
     private String description;
     public static List<String> medalClasses = new ArrayList<>(Arrays.asList("Gold", "Silver", "Bronze"));
 
-    public Medal(String medalName, String description) {
+    public Prize(String medalName, String description) {
         this.medalName = medalName;
         this.description = description;
     }
