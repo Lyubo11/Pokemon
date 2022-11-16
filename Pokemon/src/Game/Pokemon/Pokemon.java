@@ -2,17 +2,19 @@ package Game.Pokemon;
 
 import java.util.Random;
 
-public class Pokemon {
-    private String name;
-    private int pokemonLevel;
-    private int HP;
+public abstract class Pokemon implements Pokemonable {
+    protected String name;
+    protected int pokemonLevel;
+    protected int HP;
     public static int maxHP;
-    private double height;
-    private double weight;
-    private int attack;
-    private int defense;
+    protected double height;
+    protected double weight;
+    protected int attack;
+    protected int defense;
+    protected String type;
+    protected String weakness;
 
-    public Pokemon(String name, int pokemonLevel, int HP, double height, double weight, int attack, int defense) {
+    public Pokemon(String name, int pokemonLevel, int HP, double height, double weight, int attack, int defense, String type, String weakness) {
         this.name = name;
         this.pokemonLevel = pokemonLevel;
         this.HP = HP;
@@ -20,6 +22,8 @@ public class Pokemon {
         this.weight = weight;
         this.attack = attack;
         this.defense = defense;
+        this.type = type;
+        this.weakness = weakness;
     }
 
     public String getName() {
@@ -122,7 +126,23 @@ public class Pokemon {
         this.defense = defense;
     }
 
-    public String attacking() {     //TODO look at the code structure
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getWeakness() {
+        return weakness;
+    }
+
+    public void setWeakness(String weakness) {
+        this.weakness = weakness;
+    }
+
+    public String attacking() {
         Random rand = new Random();
         if (this.pokemonLevel > 0 && this.pokemonLevel <= 20) {
             setHP(getHP() - (rand.nextInt(10) + 10));
@@ -134,19 +154,28 @@ public class Pokemon {
             setHP(getHP() - (rand.nextInt(25) + 20));
         } else if (this.pokemonLevel > 80 && this.pokemonLevel <= 99) {
             setHP(getHP() - (rand.nextInt(30) + 20));
-        }else if (this.pokemonLevel == 100) {
+        } else if (this.pokemonLevel == 100) {
             setHP(getHP() - (rand.nextInt(40) + 40));
         } else {
             return "Your pokemon's level must be between level 1 and 100!";
         }
-        return "Your HP now is: " + this.HP;
+        return "Your HP now is: " + this.HP + "!";
+    }
+
+    public void reduceDamage() {
+        setHP(this.HP - (getAttack() % (getDefense() / 50)));
+        System.out.println("Your HP has fallen to " + this.HP + "HP!");
     }
 
     public void fallingBellow0HP() {
         if (this.HP <= 0) {
             System.out.println("Your pokemon died! :c \n(HP fell bellow 0)");
+        } else {
+            System.out.println("Your HP now is: " + this.HP + "!");
         }
     }
+
+    public abstract void cryMessage();
 
     @Override
     public String toString() {
@@ -157,6 +186,8 @@ public class Pokemon {
                 "\nHeight: " + height +
                 "\nWeight: " + weight +
                 "\nAttacks: " + attack +
-                "\nDefense: " + defense;
+                "\nDefense: " + defense +
+                "\nType: " + type +
+                "\nWeakness: " + weakness;
     }
 }
