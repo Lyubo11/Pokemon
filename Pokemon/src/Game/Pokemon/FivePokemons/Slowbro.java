@@ -13,8 +13,8 @@ public class Slowbro extends Pokemon{
     }
 
     @Override
-    public void reducingDamage(){
-        super.reducingDamage();
+    public void reduceDamage(){
+        super.reduceDamage();
     }
 
     @Override
@@ -23,7 +23,21 @@ public class Slowbro extends Pokemon{
     }
 
     @Override
+    public void cryMessage() {
+        //TODO
+    }
+
+    @Override
     public String toString() {
-        return super.toString();
+        return "Slowbro's info:" +
+                "\nName: " + name +
+                "\nPokemon's level: " + pokemonLevel +
+                "\nHP: " + HP +
+                "\nHeight: " + height +
+                "\nWeight: " + weight +
+                "\nAttacks: " + attack +
+                "\nDefense: " + defense +
+                "\nType: " + type +
+                "\nWeakness: " + weakness;
     }
 }

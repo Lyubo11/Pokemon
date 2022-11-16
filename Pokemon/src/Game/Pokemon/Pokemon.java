@@ -162,8 +162,8 @@ public abstract class Pokemon implements Pokemonable {
         return "Your HP now is: " + this.HP + "!";
     }
 
-    public void reducingDamage() {
-        setHP(this.HP - (getAttack() % (getDefense() / 100)));
+    public void reduceDamage() {
+        setHP(this.HP - (getAttack() % (getDefense() / 50)));
         System.out.println("Your HP has fallen to " + this.HP + "HP!");
     }
 
@@ -174,6 +174,8 @@ public abstract class Pokemon implements Pokemonable {
             System.out.println("Your HP now is: " + this.HP + "!");
         }
     }
+
+    public abstract void cryMessage();
 
     @Override
     public String toString() {
