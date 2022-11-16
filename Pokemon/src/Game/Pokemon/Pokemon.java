@@ -162,6 +162,11 @@ public abstract class Pokemon implements Pokemonable {
         return "Your HP now is: " + this.HP + "!";
     }
 
+    public void reducingDamage() {
+        setHP(this.HP - (getAttack() % (getDefense() / 100)));
+        System.out.println("Your HP has fallen to " + this.HP + "HP!");
+    }
+
     public void fallingBellow0HP() {
         if (this.HP <= 0) {
             System.out.println("Your pokemon died! :c \n(HP fell bellow 0)");

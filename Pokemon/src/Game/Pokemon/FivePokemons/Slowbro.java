@@ -13,6 +13,11 @@ public class Slowbro extends Pokemon{
     }
 
     @Override
+    public void reducingDamage(){
+        super.reducingDamage();
+    }
+
+    @Override
     public void fallingBellow0HP() {
         super.fallingBellow0HP();
     }
