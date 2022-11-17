@@ -3,31 +3,42 @@ package Game;
 import Game.GameBattle.Battle;
 import Game.GamePlayer.Player;
 import Game.GamePlayer.Prize;
+import Game.Pokemon.FivePokemons.*;
 import Game.Pokemon.Pokemon;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class TestGame {
 
     public static void listOfPokemons(Game game) {
-        Pokemon Pikachu = new Pokemon("Pikachu", 25, 150, 40, 6, 20, 30);
-        Pokemon Eevee = new Pokemon("Eevee", 15, 100, 30, 6.5, 30, 40);
-        Pokemon Charizard = new Pokemon("Charizard", 20, 150, 170, 90.5, 50, 55);
-        Pokemon Snorlax = new Pokemon("Snorlax", 35, 200, 210, 460, 50, 30);
-        Pokemon Garchomp = new Pokemon("Garchomp", 50, 200, 190, 95, 80, 60);
+        Pokemon pikachu = new Pikachu();
+        Pokemon slowbro = new Slowbro();
+        Pokemon spectier = new Spectrier();
+        Pokemon thundurus = new Thundurus();
+        Pokemon venusaur = new Venusaur();
 
-        game.getAllPokemons().add(Pikachu);
-        game.getAllPokemons().add(Eevee);
-        game.getAllPokemons().add(Charizard);
-        game.getAllPokemons().add(Snorlax);
-        game.getAllPokemons().add(Garchomp);
+        game.getAllPokemons().add(pikachu);
+        game.getAllPokemons().add(slowbro);
+        game.getAllPokemons().add(spectier);
+        game.getAllPokemons().add(thundurus);
+        game.getAllPokemons().add(venusaur);
 
         for (int i = 1; i <= game.getAllPokemons().size(); i++) {
             System.out.println(i + ". " + game.getAllPokemons().get(i-1));
             System.out.println();
+        }
+    }
+
+    public static void generateComputerPokemons(Player computer, Game game) {
+        Random rand = new Random();
+        List<Integer> randomIndexes = new ArrayList<>();
+        while (computer.getPokemons().size() != 3) {
+            int randomIndex = rand.nextInt(5);
+
+            if (!randomIndexes.contains(randomIndex)) {
+                computer.getPokemons().add(game.getAllPokemons().get(randomIndex));
+            }
+            randomIndexes.add(randomIndex);
         }
     }
 
@@ -38,10 +49,11 @@ public class TestGame {
         //my game objects
         Prize prize = new Prize("Destroyer", "Destroyed all his opponent's pokemons.");
         Player player = new Player("pokemontrainer123", 20, 350, new ArrayList<>(), new ArrayList<>());
-        Player computer = new Player("bot-pokemontrainer123", 1, 10, player.getPokemons(), new ArrayList<>());
+        Player computer = new Player("bot-pokemontrainer123", 1, 10, new ArrayList<>(), new ArrayList<>());
         Battle newBattle = new Battle(new ArrayList<>(Arrays.asList(player,computer)));
         Game newGame = new Game(newBattle, newBattle.getBattlePlayers(), prize, new ArrayList<>());
         listOfPokemons(newGame);
+        generateComputerPokemons(computer, newGame);
         newGame.startGame();
     }
 }

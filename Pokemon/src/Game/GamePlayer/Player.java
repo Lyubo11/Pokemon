@@ -2,6 +2,8 @@ package Game.GamePlayer;
 
 import Game.Pokemon.Pokemon;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Player{
@@ -10,6 +12,7 @@ public class Player{
     private double experience;
     private List<Pokemon> pokemons;
     private List<Prize> wonPrizes;
+    private List<Pokemon> roundPokemons;
 
     public Player(String userName, int playerLevel, double experience, List<Pokemon> pokemons, List<Prize> wonPrizes) {
         this.userName = userName;
@@ -37,7 +40,26 @@ public class Player{
         } else {
             System.out.println("Invalid level input!");
         }
+    }
 
+    public void clonePokemonArray() {
+        roundPokemons = new ArrayList<>(getPokemons());
+    }
+
+    public List<Prize> getWonPrizes() {
+        return wonPrizes;
+    }
+
+    public void setWonPrizes(List<Prize> wonPrizes) {
+        this.wonPrizes = wonPrizes;
+    }
+
+    public List<Pokemon> getRoundPokemons() {
+        return roundPokemons;
+    }
+
+    public void setRoundPokemons(List<Pokemon> roundPokemons) {
+        this.roundPokemons = roundPokemons;
     }
 
     public double getExperience() {
