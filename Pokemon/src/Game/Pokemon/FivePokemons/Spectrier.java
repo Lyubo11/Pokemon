@@ -2,6 +2,9 @@ package Game.Pokemon.FivePokemons;
 
 import Game.Pokemon.Pokemon;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class Spectrier extends Pokemon{
 
     public Spectrier(){
@@ -25,7 +28,19 @@ public class Spectrier extends Pokemon{
 
     @Override
     public void cryMessage() {
-        //TODO
+        System.out.print("Spectrie");
+        new Timer().scheduleAtFixedRate(new TimerTask() {
+            int times = 0;
+
+            public void run() {
+                ++times;
+                System.out.print("r");
+                if (times == 5) {
+                    System.out.println();
+                    cancel();
+                }
+            }
+        }, 1000, 1000);
     }
 
     @Override

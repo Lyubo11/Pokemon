@@ -68,7 +68,7 @@ public class Battle implements Battleable{
         Player player = getBattlePlayers().get(0);
         int pokemonNum = 1;
         for (Pokemon pokemon:player.getPokemons()) {
-            System.out.println("#" + pokemonNum + pokemon);
+            System.out.println("#" + pokemonNum + " " + pokemon);
             System.out.println();
             pokemonNum++;
         }

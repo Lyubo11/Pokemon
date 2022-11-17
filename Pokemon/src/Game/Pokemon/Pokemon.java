@@ -142,24 +142,26 @@ public abstract class Pokemon implements Pokemonable {
         this.weakness = weakness;
     }
 
+    int healthPoints = getHP();
+
     public String attacking() {
         Random rand = new Random();
         if (this.pokemonLevel > 0 && this.pokemonLevel <= 20) {
-            setHP(getHP() - (rand.nextInt(10) + 10));
+            healthPoints -= (rand.nextInt(10) + 10);
         } else if (this.pokemonLevel > 20 && this.pokemonLevel <= 40) {
-            setHP(getHP() - (rand.nextInt(20) + 10));
+            healthPoints -= (rand.nextInt(20) + 10);
         } else if (this.pokemonLevel > 40 && this.pokemonLevel <= 60) {
-            setHP(getHP() - (rand.nextInt(20) + 20));
+            healthPoints -= (rand.nextInt(20) + 20);
         } else if (this.pokemonLevel > 60 && this.pokemonLevel <= 80) {
-            setHP(getHP() - (rand.nextInt(25) + 20));
+            healthPoints -= (rand.nextInt(25) + 20);
         } else if (this.pokemonLevel > 80 && this.pokemonLevel <= 99) {
-            setHP(getHP() - (rand.nextInt(30) + 20));
+            healthPoints -= (rand.nextInt(30) + 20);
         } else if (this.pokemonLevel == 100) {
-            setHP(getHP() - (rand.nextInt(40) + 40));
+            healthPoints -= (rand.nextInt(40) + 40);
         } else {
             return "Your pokemon's level must be between level 1 and 100!";
         }
-        return "Your HP now is: " + this.HP + "!";
+        return "Your HP now is: " + healthPoints + "!";
     }
 
     public void reduceDamage() {

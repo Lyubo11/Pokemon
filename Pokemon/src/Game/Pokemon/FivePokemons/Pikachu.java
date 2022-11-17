@@ -2,6 +2,9 @@ package Game.Pokemon.FivePokemons;
 
 import Game.Pokemon.Pokemon;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class Pikachu extends Pokemon {
 
     public Pikachu() {
@@ -25,7 +28,34 @@ public class Pikachu extends Pokemon {
 
     @Override
     public void cryMessage() {
-        //TODO
+        System.out.print("Pika");
+        new Timer().scheduleAtFixedRate(new TimerTask() {
+            int times = 0;
+
+            public void run() {
+                ++times;
+                System.out.print("a");
+                if (times == 2) {
+                    System.out.println();
+                    cancel();
+                }
+            }
+        }, 1000, 1000);
+
+        System.out.print(" chu");
+
+        new Timer().scheduleAtFixedRate(new TimerTask() {
+            int times = 0;
+
+            public void run() {
+                ++times;
+                System.out.print("u");
+                if (times == 4) {
+                    System.out.println();
+                    cancel();
+                }
+            }
+        }, 1000, 1000);
     }
 
     @Override
