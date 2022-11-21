@@ -43,7 +43,7 @@ public class Player{
     }
 
     public void clonePokemonArray() {
-        roundPokemons = new ArrayList<>(getPokemons());
+        this.roundPokemons = new ArrayList<>(getPokemons());
     }
 
     public List<Prize> getWonPrizes() {

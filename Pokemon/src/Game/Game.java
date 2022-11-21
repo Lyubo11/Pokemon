@@ -38,6 +38,7 @@ public class Game implements Gameable, Winable, Messagable {
     public void startGame() {
         makeThreePokemonChoices();
         for (int i = 1; i <= battlesCount; i++) {
+            System.out.println("Battle #" + i);
             getBattle().startBattle();
         }
     }

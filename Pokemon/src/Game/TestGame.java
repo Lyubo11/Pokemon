@@ -29,14 +29,21 @@ public class TestGame {
         }
     }
 
-    public static void generateComputerPokemons(Player computer, Game game) {
+    public static void generateComputerPokemons(Player computer) {
         Random rand = new Random();
+        Pokemon pikachuComp = new Pikachu();
+        Pokemon slowbroComp = new Slowbro();
+        Pokemon spectierComp = new Spectrier();
+        Pokemon thundurusComp = new Thundurus();
+        Pokemon venusaurComp = new Venusaur();
+
+        List<Pokemon> computerPokemons = new ArrayList<>(Arrays.asList(slowbroComp, pikachuComp, spectierComp, venusaurComp, thundurusComp));
         List<Integer> randomIndexes = new ArrayList<>();
         while (computer.getPokemons().size() != 3) {
             int randomIndex = rand.nextInt(5);
 
             if (!randomIndexes.contains(randomIndex)) {
-                computer.getPokemons().add(game.getAllPokemons().get(randomIndex));
+                computer.getPokemons().add(computerPokemons.get(randomIndex));
             }
             randomIndexes.add(randomIndex);
         }
@@ -53,7 +60,7 @@ public class TestGame {
         Battle newBattle = new Battle(new ArrayList<>(Arrays.asList(player,computer)));
         Game newGame = new Game(newBattle, newBattle.getBattlePlayers(), prize, new ArrayList<>());
         listOfPokemons(newGame);
-        generateComputerPokemons(computer, newGame);
+        generateComputerPokemons(computer);
         newGame.startGame();
     }
 }

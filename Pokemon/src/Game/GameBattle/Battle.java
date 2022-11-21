@@ -4,10 +4,8 @@ import Game.Game;
 import Game.GamePlayer.Player;
 import Game.Pokemon.Pokemon;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.Scanner;
 
 public class Battle implements Battleable{
 
@@ -34,16 +32,20 @@ public class Battle implements Battleable{
         cloneArraysForBothPlayers();
 
         for (int i = 1; i <= roundsCount; i++) {
+            System.out.println("Round #" + i);
+            System.out.println();
             listOfPlayerPokemons();
-            computerChoice = rand.nextInt(3) + 1;
+            int tempComputerPokemonsCount = getBattlePlayers().get(1).getRoundPokemons().size();
+            computerChoice = rand.nextInt(tempComputerPokemonsCount) + 1;
             System.out.println("Choose a pokemon for the round: ");
             choice = Game.userInput.nextInt();
 
             while (true) {
-                fightPokemon(choice, computerChoice);
-                if (checkPokemonDefeat(choice, computerChoice)) break;
+                if (fightPokemon(choice, computerChoice)) break;
             }
+            //TODO round win message??
         }
+        winBattleMessage();
     }
 
     public void cloneArraysForBothPlayers() {
@@ -52,7 +54,7 @@ public class Battle implements Battleable{
         }
     }
 
-    public void fightPokemon(int choice, int computerChoice) {
+    public boolean fightPokemon(int choice, int computerChoice) {
         for (Player player:getBattlePlayers()) {
             userAttackMessage(player);
             System.out.println(player.getRoundPokemons().get(getFormattedChoice(player, choice, computerChoice)).getHP());
@@ -60,18 +62,24 @@ public class Battle implements Battleable{
             System.out.println(player.getUserName());
             System.out.println(player.getRoundPokemons().get(getFormattedChoice(player, choice, computerChoice)).getHP());
             System.out.println();
-            if (checkPokemonDefeat(choice, computerChoice)) break;
+            if (checkPokemonForDefeat(choice, computerChoice)) {
+                return true;
+            }
         }
+        return false;
     }
 
-    private boolean checkPokemonDefeat(int choice, int computerChoice) {
-        int playerPokemonsHP = getBattlePlayers().get(0).getRoundPokemons().get(getFormattedChoice(getBattlePlayers().get(0), choice, computerChoice)).getHP();
-        int computerPokemonsHP = getBattlePlayers().get(1).getRoundPokemons().get(getFormattedChoice(getBattlePlayers().get(1), choice, computerChoice)).getHP();
-        if (playerPokemonsHP <= 0) {        //TODO || computer , и да оправя проблема с -стойност
-            getBattlePlayers().get(0).getRoundPokemons().remove(choice - 1);
+    public boolean checkPokemonForDefeat(int choice, int computerChoice) {
+        int playerID = 0;
+        int computerID = 1;
+        int playerPokemonsHP = getBattlePlayers().get(playerID).getRoundPokemons().get(getFormattedChoice(getBattlePlayers().get(playerID), choice, computerChoice)).getHP();
+        int computerPokemonsHP = getBattlePlayers().get(computerID).getRoundPokemons().get(getFormattedChoice(getBattlePlayers().get(computerID), choice, computerChoice)).getHP();
+
+        if (playerPokemonsHP <= 0) {
+            getBattlePlayers().get(playerID).getRoundPokemons().remove(choice - 1);
             return true;
         } else if (computerPokemonsHP <= 0) {
-            getBattlePlayers().get(1).getRoundPokemons().remove(computerChoice - 1);
+            getBattlePlayers().get(computerID).getRoundPokemons().remove(computerChoice - 1);
             return true;
         }
         return false;
@@ -118,7 +126,12 @@ public class Battle implements Battleable{
     }
 
     @Override
-    public void endBattle() {
+    public void winBattleMessage() {
+        for (Player player:getBattlePlayers()) {
+            if (!(player.getRoundPokemons().size() == 0)) {
+                System.out.println(player.getUserName() + " has won the battle!");
+            }
+        }
 
     }
 }

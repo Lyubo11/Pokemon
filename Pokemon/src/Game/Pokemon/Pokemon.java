@@ -1,5 +1,7 @@
 package Game.Pokemon;
 
+import Game.GamePlayer.Player;
+
 import java.util.Random;
 
 public abstract class Pokemon implements Pokemonable {

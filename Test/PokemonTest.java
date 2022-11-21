@@ -1,7 +1,7 @@
-import Game.Pokemon.Pokemon;
-import org.testng.annotations.Test;
-
-import static org.testng.AssertJUnit.assertEquals;
+//import Game.Pokemon.Pokemon;
+//import org.testng.annotations.Test;
+//
+//import static org.testng.AssertJUnit.assertEquals;
 
 public class PokemonTest {
 //    @Test
