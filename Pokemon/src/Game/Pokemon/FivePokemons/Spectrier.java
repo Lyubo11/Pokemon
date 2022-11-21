@@ -12,13 +12,14 @@ public class Spectrier extends Pokemon{
     }
 
     @Override
-    public String attacking() {
+    public int attacking() {
         return super.attacking();
     }
 
     @Override
-    public void reduceDamage(){
+    public int reduceDamage(){
         super.reduceDamage();
+        return 0;
     }
 
     @Override

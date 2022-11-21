@@ -1,4 +1,4 @@
-import Game.Pokemon.Pokemon;
+import Game.Pokemon.FivePokemons.Pikachu;
 import org.testng.annotations.Test;
 
 import static org.testng.AssertJUnit.assertEquals;
@@ -27,4 +27,12 @@ public class PokemonTest {
 //        String actualValue = pokemon.attacking();
 //        assertEquals("Method failed!", expected, actualValue);
 //    }
+
+    @Test
+    public void attackingWhenProductThenTakenLevelMinus5(){
+        Pikachu pikachu = new Pikachu();
+        int expected = 170;
+        int actualValue = pikachu.getHP();
+        assertEquals("Method failed!", expected, actualValue);
+    }
 }

@@ -144,7 +144,7 @@ public abstract class Pokemon implements Pokemonable {
 
     int healthPoints = getHP();
 
-    public String attacking() {
+    public int attacking() {
         Random rand = new Random();
         if (this.pokemonLevel > 0 && this.pokemonLevel <= 20) {
             healthPoints -= (rand.nextInt(10) + 10);
@@ -159,14 +159,14 @@ public abstract class Pokemon implements Pokemonable {
         } else if (this.pokemonLevel == 100) {
             healthPoints -= (rand.nextInt(40) + 40);
         } else {
-            return "Your pokemon's level must be between level 1 and 100!";
+            System.out.println("Your pokemon's level must be between level 1 and 100!");
         }
-        return "Your HP now is: " + healthPoints + "!";
+        return healthPoints;     //TODO "Your HP now is: " + healthPoints + "!"
     }
 
-    public void reduceDamage() {
-        setHP(this.HP - (getAttack() % (getDefense() / 50)));
-        System.out.println("Your HP has fallen to " + this.HP + "HP!");
+    public int reduceDamage() {
+        setHP(this.HP - (attacking() % (getDefense() * 50)));
+        return this.HP;     //TODO "Your HP has fallen to " + this.HP + "HP!"
     }
 
     public void fallingBellow0HP() {

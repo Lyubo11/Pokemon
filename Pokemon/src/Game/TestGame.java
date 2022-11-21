@@ -3,6 +3,7 @@ package Game;
 import Game.GameBattle.Battle;
 import Game.GamePlayer.Player;
 import Game.GamePlayer.Prize;
+import Game.Pokemon.FivePokemons.*;
 import Game.Pokemon.Pokemon;
 
 import java.util.ArrayList;
@@ -13,17 +14,17 @@ import java.util.Scanner;
 public class TestGame {
 
     public static void listOfPokemons(Game game) {
-        Pokemon Pikachu = new Pokemon("Pikachu", 25, 150, 40, 6, 20, 30);
-        Pokemon Eevee = new Pokemon("Eevee", 15, 100, 30, 6.5, 30, 40);
-        Pokemon Charizard = new Pokemon("Charizard", 20, 150, 170, 90.5, 50, 55);
-        Pokemon Snorlax = new Pokemon("Snorlax", 35, 200, 210, 460, 50, 30);
-        Pokemon Garchomp = new Pokemon("Garchomp", 50, 200, 190, 95, 80, 60);
+        Pokemon Pikachu = new Pikachu();
+        Pokemon Slowbro = new Slowbro();
+        Pokemon Spectrier = new Spectrier();
+        Pokemon Thundurus = new Thundurus();
+        Pokemon Venusaur = new Venusaur();
 
         game.getAllPokemons().add(Pikachu);
-        game.getAllPokemons().add(Eevee);
-        game.getAllPokemons().add(Charizard);
-        game.getAllPokemons().add(Snorlax);
-        game.getAllPokemons().add(Garchomp);
+        game.getAllPokemons().add(Slowbro);
+        game.getAllPokemons().add(Spectrier);
+        game.getAllPokemons().add(Thundurus);
+        game.getAllPokemons().add(Venusaur);
 
         for (int i = 1; i <= game.getAllPokemons().size(); i++) {
             System.out.println(i + ". " + game.getAllPokemons().get(i-1));
