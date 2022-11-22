@@ -56,12 +56,8 @@ public abstract class Pokemon implements Pokemonable {
     }
 
     public void setHP(int HP) {
-        if (HP <= 0) {
-            System.out.println("Your pokemon must have at least 1 HP! \nTry again, buddy!");
-        } else if (HP > 255) {
+        if (HP > 255) {
             System.out.println("Your pokemon can not have more than 255 HP! \nTry again, buddy!");
-        } else {
-            System.out.println("Your pokemon has " + HP + " HP! \nLet's go, buddy!");
         }
         this.HP = HP;
     }
@@ -161,7 +157,7 @@ public abstract class Pokemon implements Pokemonable {
         } else {
             return "Your pokemon's level must be between level 1 and 100!";
         }
-        return "Your HP now is: " + this.HP + "!";
+        return "";
     }
 
     public void reduceDamage() {

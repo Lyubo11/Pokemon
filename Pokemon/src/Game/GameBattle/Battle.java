@@ -41,9 +41,14 @@ public class Battle implements Battleable{
             choice = Game.userInput.nextInt();
 
             while (true) {
-                if (fightPokemon(choice, computerChoice)) break;
+                try {
+                    if (fightPokemon(choice, computerChoice)) break;
+                } catch (Exception e) {
+                    System.out.println("That pokemon is no longer pickable.");
+                    System.out.println("Choose a pokemon for the round: ");
+                    choice = Game.userInput.nextInt();
+                }
             }
-            //TODO round win message??
         }
         winBattleMessage();
     }
@@ -55,12 +60,19 @@ public class Battle implements Battleable{
     }
 
     public boolean fightPokemon(int choice, int computerChoice) {
+        Pokemon pokemon;
+        int pokemonHealthBefore = 0;
+        int pokemonHealthAfter = 0;
         for (Player player:getBattlePlayers()) {
+            pokemon = player.getRoundPokemons().get(getFormattedChoice(player, choice, computerChoice));
             userAttackMessage(player);
-            System.out.println(player.getRoundPokemons().get(getFormattedChoice(player, choice, computerChoice)).getHP());
-            System.out.println(player.getRoundPokemons().get(getFormattedChoice(player, choice, computerChoice)).attacking());
-            System.out.println(player.getUserName());
-            System.out.println(player.getRoundPokemons().get(getFormattedChoice(player, choice, computerChoice)).getHP());
+
+            pokemonHealthBefore = pokemon.getHP();
+            System.out.println(pokemon.getName() + " health before attack: " + pokemonHealthBefore);
+            pokemon.attacking();
+            pokemonHealthAfter = pokemon.getHP();
+            System.out.println(pokemon.getName() + " health after attack: " + pokemonHealthAfter);
+            System.out.println(player.getUserName() + "'s pokemon has lost " + (pokemonHealthBefore - pokemonHealthAfter) + "HP.");
             System.out.println();
             if (checkPokemonForDefeat(choice, computerChoice)) {
                 return true;
@@ -76,13 +88,18 @@ public class Battle implements Battleable{
         int computerPokemonsHP = getBattlePlayers().get(computerID).getRoundPokemons().get(getFormattedChoice(getBattlePlayers().get(computerID), choice, computerChoice)).getHP();
 
         if (playerPokemonsHP <= 0) {
-            getBattlePlayers().get(playerID).getRoundPokemons().remove(choice - 1);
+            roundWinMessage(choice, playerID, computerID);
             return true;
         } else if (computerPokemonsHP <= 0) {
-            getBattlePlayers().get(computerID).getRoundPokemons().remove(computerChoice - 1);
+            roundWinMessage(computerChoice, computerID, playerID);
             return true;
         }
         return false;
+    }
+
+    public void roundWinMessage(int choice, int ID1, int ID2) {
+        getBattlePlayers().get(ID1).getRoundPokemons().remove(choice - 1);
+        System.out.println(getBattlePlayers().get(ID2).getUserName() + " has won the round.");
     }
 
     public void userAttackMessage(Player player) {
@@ -116,6 +133,8 @@ public class Battle implements Battleable{
     public void listOfPlayerPokemons() {
         for (Player player:getBattlePlayers()) {
             int pokemonNum = 1;
+            System.out.println(player.getUserName() + "'s pokemons.");
+            System.out.println();
             for (Pokemon pokemon:player.getRoundPokemons()) {
                 System.out.println("#" + pokemonNum + " " + pokemon);
                 System.out.println();
