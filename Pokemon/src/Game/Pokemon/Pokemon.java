@@ -2,9 +2,10 @@ package Game.Pokemon;
 
 import Game.GamePlayer.Player;
 
+import java.util.Objects;
 import java.util.Random;
 
-public abstract class Pokemon implements Pokemonable {
+public abstract class Pokemon implements Pokemonable, Cloneable {
     protected String name;
     protected int pokemonLevel;
     protected int HP;
@@ -26,6 +27,11 @@ public abstract class Pokemon implements Pokemonable {
         this.defense = defense;
         this.type = type;
         this.weakness = weakness;
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 
     public String getName() {

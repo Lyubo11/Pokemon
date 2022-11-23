@@ -3,7 +3,7 @@ package Game.GamePlayer;
 import Game.Pokemon.Pokemon;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 
 public class Player{
@@ -13,6 +13,7 @@ public class Player{
     private List<Pokemon> pokemons;
     private List<Prize> wonPrizes;
     private List<Pokemon> roundPokemons;
+    private Iterator<Pokemon> iterator;
 
     public Player(String userName, int playerLevel, double experience, List<Pokemon> pokemons, List<Prize> wonPrizes) {
         this.userName = userName;
@@ -20,6 +21,22 @@ public class Player{
         this.experience = experience;
         this.pokemons = pokemons;
         this.wonPrizes = wonPrizes;
+        this.roundPokemons = new ArrayList<>();
+        this.iterator = pokemons.iterator();
+    }
+
+    public void cloneArrayList() {
+        Pokemon roundPokemon = null;
+        try {
+            for (Pokemon pokemon:getPokemons()) {
+                roundPokemon = (Pokemon) pokemon.clone();
+                this.roundPokemons.add(roundPokemon);
+            }
+
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+
     }
 
     public String getUserName() {
@@ -40,10 +57,6 @@ public class Player{
         } else {
             System.out.println("Invalid level input!");
         }
-    }
-
-    public void clonePokemonArray() {
-        this.roundPokemons = new ArrayList<>(getPokemons());
     }
 
     public List<Prize> getWonPrizes() {

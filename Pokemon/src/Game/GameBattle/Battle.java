@@ -10,10 +10,16 @@ import java.util.Random;
 public class Battle implements Battleable{
 
     private List<Player> battlePlayers;
+    private int playerRoundPoints;
+    private int computerRoundPoints;
+    private int playerBattlePoints;
+    private int computerBattlePoints;
     public static final int roundsCount = 5;
 
     public Battle(List<Player> battlePlayers) {
         this.battlePlayers = battlePlayers;
+        this.playerRoundPoints = 0;
+        this.computerRoundPoints = 0;
     }
 
     public List<Player> getBattlePlayers() {
@@ -32,6 +38,7 @@ public class Battle implements Battleable{
         cloneArraysForBothPlayers();
 
         for (int i = 1; i <= roundsCount; i++) {
+            if (isPokemonCount0()) break;
             System.out.println("Round #" + i);
             System.out.println();
             listOfPlayerPokemons();
@@ -53,9 +60,21 @@ public class Battle implements Battleable{
         winBattleMessage();
     }
 
+    public boolean isPokemonCount0() {
+        int pokemonsCount = 0;
+        for (Player player:getBattlePlayers()) {
+            pokemonsCount = player.getRoundPokemons().size();
+            if (pokemonsCount == 0) {
+                System.out.println("The battle ends because " + player.getUserName() + " has no more pokemons left.");
+                return true;
+            }
+        }
+        return false;
+    }
+
     public void cloneArraysForBothPlayers() {
         for (Player player:getBattlePlayers()) {
-            player.clonePokemonArray();
+            player.cloneArrayList();
         }
     }
 
@@ -82,17 +101,24 @@ public class Battle implements Battleable{
     }
 
     public boolean checkPokemonForDefeat(int choice, int computerChoice) {
-        int playerID = 0;
-        int computerID = 1;
-        int playerPokemonsHP = getBattlePlayers().get(playerID).getRoundPokemons().get(getFormattedChoice(getBattlePlayers().get(playerID), choice, computerChoice)).getHP();
-        int computerPokemonsHP = getBattlePlayers().get(computerID).getRoundPokemons().get(getFormattedChoice(getBattlePlayers().get(computerID), choice, computerChoice)).getHP();
+        int playerID1 = 0;
+        int playerID2 = 1;
+        int pokemonHP = 0;
+        int tempChoice = choice;
+        int tempPlayerID = playerID1;
 
-        if (playerPokemonsHP <= 0) {
-            roundWinMessage(choice, playerID, computerID);
-            return true;
-        } else if (computerPokemonsHP <= 0) {
-            roundWinMessage(computerChoice, computerID, playerID);
-            return true;
+        for (Player player:getBattlePlayers()) {
+            pokemonHP = player.getRoundPokemons().get(getFormattedChoice(player, choice, computerChoice)).getHP();
+            if (player.getUserName().startsWith("bot-")) {
+                tempChoice = computerChoice;
+                playerID1 = playerID2;
+                playerID2 = tempPlayerID;
+            }
+
+            if (pokemonHP <= 0) {
+                roundWinMessage(tempChoice, playerID1, playerID2);
+                return true;
+            }
         }
         return false;
     }
@@ -100,6 +126,19 @@ public class Battle implements Battleable{
     public void roundWinMessage(int choice, int ID1, int ID2) {
         getBattlePlayers().get(ID1).getRoundPokemons().remove(choice - 1);
         System.out.println(getBattlePlayers().get(ID2).getUserName() + " has won the round.");
+        roundResult(ID1);
+        System.out.println();
+    }
+
+    public void roundResult(int ID1) {
+        String playerName = getBattlePlayers().get(ID1).getUserName();
+        if (!playerName.startsWith("bot-")) {
+            this.computerRoundPoints++;
+        } else {
+            this.playerRoundPoints++;
+        }
+
+        System.out.println(this.playerRoundPoints + " : " + this.computerRoundPoints);
     }
 
     public void userAttackMessage(Player player) {
@@ -149,8 +188,21 @@ public class Battle implements Battleable{
         for (Player player:getBattlePlayers()) {
             if (!(player.getRoundPokemons().size() == 0)) {
                 System.out.println(player.getUserName() + " has won the battle!");
+                scoreBattlePoints(player);
+                player.getRoundPokemons().removeAll(player.getRoundPokemons());
             }
         }
+        this.computerRoundPoints = 0;
+        this.playerRoundPoints = 0;
+    }
 
+    public void scoreBattlePoints(Player player) {
+        if (player.getUserName().startsWith("bot-")) {
+            this.computerBattlePoints++;
+        } else {
+            this.playerBattlePoints++;
+        }
+
+        System.out.println(this.playerBattlePoints + " : " + this.computerBattlePoints);
     }
 }
