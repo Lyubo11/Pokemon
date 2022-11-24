@@ -15,16 +15,11 @@ public class Slowbro extends Pokemon{
         return super.attacking();
     }
 
-    @Override
-    public int reduceDamage(){
-        super.reduceDamage();
-        return 0;
-    }
-
-    @Override
-    public void fallingBellow0HP() {
-        super.fallingBellow0HP();
-    }
+//    @Override
+//    public int reduceDamage(){
+//        super.reduceDamage();
+//        return 0;
+//    }
 
     @Override
     public void cryMessage() {

@@ -149,33 +149,31 @@ public abstract class Pokemon implements Pokemonable {
         if (this.pokemonLevel > 0 && this.pokemonLevel <= 20) {
             healthPoints -= (rand.nextInt(10) + 10);
         } else if (this.pokemonLevel > 20 && this.pokemonLevel <= 40) {
-            healthPoints -= (rand.nextInt(20) + 10);
+            healthPoints -= (rand.nextInt(15) + 10);
         } else if (this.pokemonLevel > 40 && this.pokemonLevel <= 60) {
-            healthPoints -= (rand.nextInt(20) + 20);
+            healthPoints -= (rand.nextInt(15) + 20);
         } else if (this.pokemonLevel > 60 && this.pokemonLevel <= 80) {
-            healthPoints -= (rand.nextInt(25) + 20);
+            healthPoints -= (rand.nextInt(20) + 20);
         } else if (this.pokemonLevel > 80 && this.pokemonLevel <= 99) {
-            healthPoints -= (rand.nextInt(30) + 20);
+            healthPoints -= (rand.nextInt(25) + 20);
         } else if (this.pokemonLevel == 100) {
-            healthPoints -= (rand.nextInt(40) + 40);
+            healthPoints -= (rand.nextInt(30) + 40);
         } else {
             System.out.println("Your pokemon's level must be between level 1 and 100!");
         }
         return healthPoints;     //TODO "Your HP now is: " + healthPoints + "!"
     }
 
-    public int reduceDamage() {
-        setHP(this.HP - (attacking() % (getDefense() * 50)));
-        return this.HP;     //TODO "Your HP has fallen to " + this.HP + "HP!"
-    }
-
-    public void fallingBellow0HP() {
-        if (this.HP <= 0) {
-            System.out.println("Your pokemon died! :c \n(HP fell bellow 0)");
-        } else {
-            System.out.println("Your HP now is: " + this.HP + "!");
-        }
-    }
+//    public int reduceDamage(Ability ability) {
+//        if (ability == '1') {
+//            setHP(this.HP - (ability.getFirstNormalAbility() % (getDefense() % 75)));
+//        } else if () {
+//            setHP(this.HP - (ability.getSecondNormalAbility() % (getDefense() % 75)));
+//        } else {
+//            setHP(this.HP - (ability.getHiddenAbility() % (getDefense() % 75)));
+//        }
+//            return this.HP;     //TODO "Your HP has fallen to " + this.HP + "HP!"
+//    }
 
     public abstract void cryMessage();
 
