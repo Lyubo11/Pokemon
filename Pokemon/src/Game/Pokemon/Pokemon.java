@@ -2,7 +2,7 @@ package Game.Pokemon;
 
 import java.util.Random;
 
-public abstract class Pokemon implements Pokemonable {
+public abstract class Pokemon implements Pokemonable, Cloneable {
     protected String name;
     protected int pokemonLevel;
     protected int HP;
@@ -180,6 +180,11 @@ public abstract class Pokemon implements Pokemonable {
         setPokemonLevel(getPokemonLevel() + 1);
         setAttack(getAttack() + 1);
         setDefense(getDefense() + 2);
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 
     public abstract void cryMessage();
