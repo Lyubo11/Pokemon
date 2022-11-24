@@ -23,6 +23,11 @@ public class Thundurus extends Pokemon{
 //    }
 
     @Override
+    public void trainPokemon() {
+        super.trainPokemon();
+    }
+
+    @Override
     public void cryMessage() {
         System.out.print("Thu");
         new Timer().scheduleAtFixedRate(new TimerTask() {

@@ -22,6 +22,11 @@ public class Slowbro extends Pokemon{
 //    }
 
     @Override
+    public void trainPokemon() {
+        super.trainPokemon();
+    }
+
+    @Override
     public void cryMessage() {
         System.out.print("Slo");
         new Timer().scheduleAtFixedRate(new TimerTask() {

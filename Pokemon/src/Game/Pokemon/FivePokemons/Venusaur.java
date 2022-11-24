@@ -23,6 +23,11 @@ public class Venusaur extends Pokemon {
 //    }
 
     @Override
+    public void trainPokemon() {
+        super.trainPokemon();
+    }
+
+    @Override
     public void cryMessage() {
         System.out.print("Venu");
         new Timer().scheduleAtFixedRate(new TimerTask() {

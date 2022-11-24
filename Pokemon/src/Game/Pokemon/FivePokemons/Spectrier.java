@@ -23,6 +23,11 @@ public class Spectrier extends Pokemon{
 //    }
 
     @Override
+    public void trainPokemon() {
+        super.trainPokemon();
+    }
+
+    @Override
     public void cryMessage() {
         System.out.print("Spectrie");
         new Timer().scheduleAtFixedRate(new TimerTask() {

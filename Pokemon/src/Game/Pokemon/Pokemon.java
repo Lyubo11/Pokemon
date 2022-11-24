@@ -175,6 +175,13 @@ public abstract class Pokemon implements Pokemonable {
 //            return this.HP;     //TODO "Your HP has fallen to " + this.HP + "HP!"
 //    }
 
+    @Override
+    public void trainPokemon() {
+        setPokemonLevel(getPokemonLevel() + 1);
+        setAttack(getAttack() + 1);
+        setDefense(getDefense() + 2);
+    }
+
     public abstract void cryMessage();
 
     @Override
