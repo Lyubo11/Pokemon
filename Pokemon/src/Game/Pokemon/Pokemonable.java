@@ -1,9 +1,9 @@
 package Game.Pokemon;
 
 public interface Pokemonable {
-    String attacking();
+    int attacking();
 
-    void reduceDamage();
+//    int reduceDamage(Ability ability);
 
-    void fallingBellow0HP();
+    void trainPokemon();
 }

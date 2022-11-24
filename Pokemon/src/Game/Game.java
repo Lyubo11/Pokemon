@@ -26,7 +26,7 @@ public class Game implements Gameable, Winable, Messagable {
     }
 
     public void makeThreePokemonChoices() {
-        System.out.println("Pick three pokemons.");
+        System.out.println("Pick three pokemons!");
         int choice = 0;
         for (int i = 0; i < 3; i++) {
             choice = userInput.nextInt();

@@ -1,8 +1,5 @@
 package Game.Pokemon;
 
-import Game.GamePlayer.Player;
-
-import java.util.Objects;
 import java.util.Random;
 
 public abstract class Pokemon implements Pokemonable, Cloneable {
@@ -27,11 +24,6 @@ public abstract class Pokemon implements Pokemonable, Cloneable {
         this.defense = defense;
         this.type = type;
         this.weakness = weakness;
-    }
-
-    @Override
-    public Object clone() throws CloneNotSupportedException {
-        return super.clone();
     }
 
     public String getName() {
@@ -62,8 +54,12 @@ public abstract class Pokemon implements Pokemonable, Cloneable {
     }
 
     public void setHP(int HP) {
-        if (HP > 255) {
+        if (HP <= 0) {
+            System.out.println("Your pokemon must have at least 1 HP! \nTry again, buddy!");
+        } else if (HP > 255) {
             System.out.println("Your pokemon can not have more than 255 HP! \nTry again, buddy!");
+        } else {
+            System.out.println("Your pokemon has " + HP + " HP! \nLet's go, buddy!");
         }
         this.HP = HP;
     }
@@ -146,37 +142,49 @@ public abstract class Pokemon implements Pokemonable, Cloneable {
         this.weakness = weakness;
     }
 
-    public String attacking() {
+    int healthPoints = getHP();
+
+    public int attacking() {
         Random rand = new Random();
         if (this.pokemonLevel > 0 && this.pokemonLevel <= 20) {
-            setHP(getHP() - (rand.nextInt(10) + 10));
+            healthPoints -= (rand.nextInt(10) + 10);
         } else if (this.pokemonLevel > 20 && this.pokemonLevel <= 40) {
-            setHP(getHP() - (rand.nextInt(20) + 10));
+            healthPoints -= (rand.nextInt(15) + 10);
         } else if (this.pokemonLevel > 40 && this.pokemonLevel <= 60) {
-            setHP(getHP() - (rand.nextInt(20) + 20));
+            healthPoints -= (rand.nextInt(15) + 20);
         } else if (this.pokemonLevel > 60 && this.pokemonLevel <= 80) {
-            setHP(getHP() - (rand.nextInt(25) + 20));
+            healthPoints -= (rand.nextInt(20) + 20);
         } else if (this.pokemonLevel > 80 && this.pokemonLevel <= 99) {
-            setHP(getHP() - (rand.nextInt(30) + 20));
+            healthPoints -= (rand.nextInt(25) + 20);
         } else if (this.pokemonLevel == 100) {
-            setHP(getHP() - (rand.nextInt(40) + 40));
+            healthPoints -= (rand.nextInt(30) + 40);
         } else {
-            return "Your pokemon's level must be between level 1 and 100!";
+            System.out.println("Your pokemon's level must be between level 1 and 100!");
         }
-        return "";
+        return healthPoints;     //TODO "Your HP now is: " + healthPoints + "!"
     }
 
-    public void reduceDamage() {
-        setHP(this.HP - (getAttack() % (getDefense() / 50)));
-        System.out.println("Your HP has fallen to " + this.HP + "HP!");
+//    public int reduceDamage(Ability ability) {
+//        if (ability == '1') {
+//            setHP(this.HP - (ability.getFirstNormalAbility() % (getDefense() % 75)));
+//        } else if () {
+//            setHP(this.HP - (ability.getSecondNormalAbility() % (getDefense() % 75)));
+//        } else {
+//            setHP(this.HP - (ability.getHiddenAbility() % (getDefense() % 75)));
+//        }
+//            return this.HP;     //TODO "Your HP has fallen to " + this.HP + "HP!"
+//    }
+
+    @Override
+    public void trainPokemon() {
+        setPokemonLevel(getPokemonLevel() + 1);
+        setAttack(getAttack() + 1);
+        setDefense(getDefense() + 2);
     }
 
-    public void fallingBellow0HP() {
-        if (this.HP <= 0) {
-            System.out.println("Your pokemon died! :c \n(HP fell bellow 0)");
-        } else {
-            System.out.println("Your HP now is: " + this.HP + "!");
-        }
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 
     public abstract void cryMessage();
