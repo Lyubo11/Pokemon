@@ -1,7 +1,6 @@
 package Game;
 
 public interface Winable {
-    void winPrize();
-    void winPokemon();
-    void winCristals();
+    void randomWinPrize();
+    void winCristals(int playerID, int battlePoints);
 }

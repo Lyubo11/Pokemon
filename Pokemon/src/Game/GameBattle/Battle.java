@@ -2,6 +2,7 @@ package Game.GameBattle;
 
 import Game.Game;
 import Game.GamePlayer.Player;
+import Game.GamePlayer.Prize;
 import Game.Pokemon.Pokemon;
 
 import java.util.List;
@@ -20,6 +21,14 @@ public class Battle implements Battleable{
         this.battlePlayers = battlePlayers;
         this.playerRoundPoints = 0;
         this.computerRoundPoints = 0;
+    }
+
+    public int getPlayerBattlePoints() {
+        return playerBattlePoints;
+    }
+
+    public int getComputerBattlePoints() {
+        return computerBattlePoints;
     }
 
     public List<Player> getBattlePlayers() {
@@ -57,7 +66,6 @@ public class Battle implements Battleable{
                 }
             }
         }
-        winBattleMessage();
     }
 
     public boolean isPokemonCount0() {

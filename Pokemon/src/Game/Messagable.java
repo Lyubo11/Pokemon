@@ -1,6 +1,7 @@
 package Game;
 
+import Game.GamePlayer.Player;
+
 public interface Messagable {
-    void winGameMessage();
-    void loseMessage();
+    void winGameMessage(int ID);
 }

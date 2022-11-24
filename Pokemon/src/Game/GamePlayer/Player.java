@@ -14,6 +14,7 @@ public class Player{
     private List<Prize> wonPrizes;
     private List<Pokemon> roundPokemons;
     private Iterator<Pokemon> iterator;
+    private int cristals;
 
     public Player(String userName, int playerLevel, double experience, List<Pokemon> pokemons, List<Prize> wonPrizes) {
         this.userName = userName;
@@ -23,6 +24,7 @@ public class Player{
         this.wonPrizes = wonPrizes;
         this.roundPokemons = new ArrayList<>();
         this.iterator = pokemons.iterator();
+        this.cristals = 0;
     }
 
     public void cloneArrayList() {
@@ -37,6 +39,14 @@ public class Player{
             e.printStackTrace();
         }
 
+    }
+
+    public int getCristals() {
+        return cristals;
+    }
+
+    public void setCristals(int cristals) {
+        this.cristals = cristals;
     }
 
     public String getUserName() {
@@ -94,14 +104,6 @@ public class Player{
 
     public void setPokemons(List<Pokemon> pokemons) {
         this.pokemons = pokemons;
-    }
-
-    public List<Prize> getWonMedals() {
-        return wonPrizes;
-    }
-
-    public void setWonMedals(List<Prize> wonPrizes) {
-        this.wonPrizes = wonPrizes;
     }
 
     @Override

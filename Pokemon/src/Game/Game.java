@@ -6,21 +6,22 @@ import Game.GamePlayer.Prize;
 import Game.Pokemon.Pokemon;
 
 import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Game implements Gameable, Winable, Messagable {
 
     private Battle battle;
     private List<Player> players;
-    private Prize prize;
+    private List<Prize> prizes;
     private List<Pokemon> allPokemons;
     public static final int battlesCount = 5;
     public static Scanner userInput = new Scanner(System.in).useDelimiter("\\R");
 
-    public Game(Battle battle, List<Player> players, Prize prize, List<Pokemon> allPokemons) {
+    public Game(Battle battle, List<Player> players, List<Prize> prizes, List<Pokemon> allPokemons) {
         this.battle = battle;
         this.players = players;
-        this.prize = prize;
+        this.prizes = prizes;
         this.allPokemons = allPokemons;
     }
 
@@ -35,47 +36,61 @@ public class Game implements Gameable, Winable, Messagable {
     }
 
     @Override
+    public void randomWinPrize() {
+        Random rand = new Random();
+        int randomNum = rand.nextInt(getPrizes().size());
+        Prize randomPrizeWin = getPrizes().get(randomNum);
+        int previousPlayerLevel = 0;
+        for (Player player:players) {
+
+            if (!(player.getRoundPokemons().size() == 0)) {
+                player.getWonPrizes().add(randomPrizeWin);
+                System.out.println(player.getUserName() + " has just won a prize: " + randomPrizeWin);
+                System.out.println();
+                previousPlayerLevel = player.getPlayerLevel();
+                player.setPlayerLevel(player.getPlayerLevel() + 1);
+                System.out.println(player.getUserName() + " got higher level: " + previousPlayerLevel + " --> " + player.getPlayerLevel());
+            }
+        }
+    }
+
+    @Override
     public void startGame() {
         makeThreePokemonChoices();
         for (int i = 1; i <= battlesCount; i++) {
             System.out.println("Battle #" + i);
             getBattle().startBattle();
+            randomWinPrize();
+            System.out.println();
+            getBattle().winBattleMessage();
+        }
+        decideWhoWinGame();
+    }
+
+    @Override
+    public void decideWhoWinGame() {
+        int playerID = 0;
+        int computerID = 1;
+
+        if (getBattle().getComputerBattlePoints() < getBattle().getPlayerBattlePoints()) {
+            winGameMessage(playerID);
+            winCristals(playerID, getBattle().getPlayerBattlePoints());
+        } else {
+            winGameMessage(computerID);
+            winCristals(computerID, getBattle().getComputerBattlePoints());
         }
     }
 
     @Override
-    public void winGame() {
-
+    public void winCristals(int playerID, int battlePoints) {
+        int getCristals = players.get(playerID).getCristals();
+        players.get(playerID).setCristals(getCristals + battlePoints);
     }
 
     @Override
-    public void winPrize() {
-
-    }
-
-    @Override
-    public void winPokemon() {
-
-    }
-
-    @Override
-    public void winCristals() {
-
-    }
-
-    @Override
-    public void loseGame() {
-
-    }
-
-    @Override
-    public void winGameMessage() {
-
-    }
-
-    @Override
-    public void loseMessage() {
-
+    public void winGameMessage(int playerID) {
+        String playerUsername = players.get(playerID).getUserName();
+        System.out.println(playerUsername + " has won the game!");
     }
 
     public boolean choosePokemon(int choice) {
@@ -105,12 +120,8 @@ public class Game implements Gameable, Winable, Messagable {
         this.players = players;
     }
 
-    public Prize getPrize() {
-        return prize;
-    }
-
-    public void setPrize(Prize prize) {
-        this.prize = prize;
+    public List<Prize> getPrizes() {
+        return prizes;
     }
 
     public List<Pokemon> getAllPokemons() {

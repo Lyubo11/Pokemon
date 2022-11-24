@@ -49,18 +49,36 @@ public class TestGame {
         }
     }
 
+    public static void generateGamePrizes(Game game) {
+        Prize pokeballs = new Prize("Pokeballs", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi mattis.");
+        Prize money = new Prize("money", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin rhoncus.");
+        Prize RP = new Prize("RP", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eget.");
+        Prize tournamentCup = new Prize("Tournament cup", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eget.");
+        Prize stars = new Prize("Stars", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin pretium.");
+        Prize goldenSkunk = new Prize("Golden skunk", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vestibulum.");
+        Prize honeyHeart = new Prize("Honey heart", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ac.");
+
+        game.getPrizes().add(pokeballs);
+        game.getPrizes().add(money);
+        game.getPrizes().add(RP);
+        game.getPrizes().add(tournamentCup);
+        game.getPrizes().add(stars);
+        game.getPrizes().add(goldenSkunk);
+        game.getPrizes().add(honeyHeart);
+    }
+
     public static void main(String[] args) {
         System.out.println("-- WELCOME TO POKEMON --");
         System.out.println("Press 'ENTER' to start the game!");
         Game.userInput.nextLine();
         //my game objects
-        Prize prize = new Prize("Destroyer", "Destroyed all his opponent's pokemons.");
         Player player = new Player("pokemontrainer123", 20, 350, new ArrayList<>(), new ArrayList<>());
         Player computer = new Player("bot-pokemontrainer123", 1, 10, new ArrayList<>(), new ArrayList<>());
         Battle newBattle = new Battle(new ArrayList<>(Arrays.asList(player,computer)));
-        Game newGame = new Game(newBattle, newBattle.getBattlePlayers(), prize, new ArrayList<>());
+        Game newGame = new Game(newBattle, newBattle.getBattlePlayers(), new ArrayList<>(), new ArrayList<>());
         listOfPokemons(newGame);
         generateComputerPokemons(computer);
+        generateGamePrizes(newGame);
         newGame.startGame();
     }
 }
