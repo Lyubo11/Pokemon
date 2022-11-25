@@ -1,11 +1,7 @@
-import Game.Pokemon.FivePokemons.Pikachu;
+import Game.Pokemon.FivePokemons.*;
 import org.testng.annotations.Test;
 
 import static org.testng.AssertJUnit.assertEquals;
-//import org.testng.annotations.Test;
-//
-//import static org.testng.AssertJUnit.assertEquals;
-
 public class PokemonTest {
 //    @Test
 //    public void attackingWhenProductThenTakenLevelMinus5() {
@@ -32,10 +28,42 @@ public class PokemonTest {
 //    }
 //
     @Test
-    public void attackingWhenProductThenTakenHP(){
+    public void attackingWhenProductThenPikachuHP(){
         Pikachu pikachu = new Pikachu();
         int expected = 60;
         int actualValue = pikachu.getHP();
+        assertEquals("Method failed!", expected, actualValue);
+    }
+
+    @Test
+    public void attackingWhenProductThenSlowbroHP(){
+        Slowbro slowbro = new Slowbro();
+        int expected = 95;
+        int actualValue = slowbro.getHP();
+        assertEquals("Method failed!", expected, actualValue);
+    }
+
+    @Test
+    public void attackingWhenProductThenSpectrierHP(){
+        Spectrier spectrier = new Spectrier();
+        int expected = 100;
+        int actualValue = spectrier.getHP();
+        assertEquals("Method failed!", expected, actualValue);
+    }
+
+    @Test
+    public void attackingWhenProductThenThundurusHP(){
+        Thundurus thundurus = new Thundurus();
+        int expected = 79;
+        int actualValue = thundurus.getHP();
+        assertEquals("Method failed!", expected, actualValue);
+    }
+
+    @Test
+    public void attackingWhenProductThenVenusaurHP(){
+        Venusaur venusaur = new Venusaur();
+        int expected = 80;
+        int actualValue = venusaur.getHP();
         assertEquals("Method failed!", expected, actualValue);
     }
 }
