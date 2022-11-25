@@ -45,7 +45,7 @@ public class Game implements Gameable, Winable, Messagable {
 
             if (!(player.getRoundPokemons().size() == 0)) {
                 player.getWonPrizes().add(randomPrizeWin);
-                System.out.println(player.getUserName() + " has just won a prize: " + randomPrizeWin);
+                System.out.println(player.getUserName() + " has just won a prize: \n" + randomPrizeWin);
                 System.out.println();
                 previousPlayerLevel = player.getPlayerLevel();
                 player.setPlayerLevel(player.getPlayerLevel() + 1);
@@ -85,6 +85,7 @@ public class Game implements Gameable, Winable, Messagable {
     public void winCristals(int playerID, int battlePoints) {
         int getCristals = players.get(playerID).getCristals();
         players.get(playerID).setCristals(getCristals + battlePoints);
+        System.out.println(this.players.get(playerID).getUserName() + " has won " + this.players.get(playerID).getCristals() + " crystals.");
     }
 
     @Override

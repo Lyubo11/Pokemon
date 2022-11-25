@@ -54,13 +54,10 @@ public abstract class Pokemon implements Pokemonable, Cloneable {
     }
 
     public void setHP(int HP) {
-        if (HP <= 0) {
-            System.out.println("Your pokemon must have at least 1 HP! \nTry again, buddy!");
-        } else if (HP > 255) {
+        if (HP > 255) {
             System.out.println("Your pokemon can not have more than 255 HP! \nTry again, buddy!");
-        } else {
-            System.out.println("Your pokemon has " + HP + " HP! \nLet's go, buddy!");
         }
+
         this.HP = HP;
     }
 
@@ -142,26 +139,24 @@ public abstract class Pokemon implements Pokemonable, Cloneable {
         this.weakness = weakness;
     }
 
-    int healthPoints = getHP();
-
     public int attacking() {
         Random rand = new Random();
         if (this.pokemonLevel > 0 && this.pokemonLevel <= 20) {
-            healthPoints -= (rand.nextInt(10) + 10);
+            setHP(getHP() - (rand.nextInt(10) + 10));
         } else if (this.pokemonLevel > 20 && this.pokemonLevel <= 40) {
-            healthPoints -= (rand.nextInt(15) + 10);
+            setHP(getHP() - (rand.nextInt(20) + 10));
         } else if (this.pokemonLevel > 40 && this.pokemonLevel <= 60) {
-            healthPoints -= (rand.nextInt(15) + 20);
+            setHP(getHP() - (rand.nextInt(20) + 20));
         } else if (this.pokemonLevel > 60 && this.pokemonLevel <= 80) {
-            healthPoints -= (rand.nextInt(20) + 20);
+            setHP(getHP() - (rand.nextInt(25) + 20));
         } else if (this.pokemonLevel > 80 && this.pokemonLevel <= 99) {
-            healthPoints -= (rand.nextInt(25) + 20);
+            setHP(getHP() - (rand.nextInt(30) + 20));
         } else if (this.pokemonLevel == 100) {
-            healthPoints -= (rand.nextInt(30) + 40);
+            setHP(getHP() - (rand.nextInt(40) + 40));
         } else {
-            System.out.println("Your pokemon's level must be between level 1 and 100!");
+            return 0;
         }
-        return healthPoints;     //TODO "Your HP now is: " + healthPoints + "!"
+        return 0;
     }
 
 //    public int reduceDamage(Ability ability) {
