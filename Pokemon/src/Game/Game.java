@@ -25,6 +25,34 @@ public class Game implements Gameable, Winable, Messagable {
         this.allPokemons = allPokemons;
     }
 
+    public Battle getBattle() {
+        return battle;
+    }
+
+    public void setBattle(Battle battle) {
+        this.battle = battle;
+    }
+
+    public List<Player> getPlayers() {
+        return players;
+    }
+
+    public void setPlayers(List<Player> players) {
+        this.players = players;
+    }
+
+    public List<Prize> getPrizes() {
+        return prizes;
+    }
+
+    public List<Pokemon> getAllPokemons() {
+        return allPokemons;
+    }
+
+    public void setAllPokemons(List<Pokemon> allPokemons) {
+        this.allPokemons = allPokemons;
+    }
+
     public void makeThreePokemonChoices() {
         System.out.println("Pick three pokemons!");
         int choice = 0;
@@ -103,33 +131,5 @@ public class Game implements Gameable, Winable, Messagable {
             System.out.println("There's no such pokemon number.");
             return false;
         }
-    }
-
-    public Battle getBattle() {
-        return battle;
-    }
-
-    public void setBattle(Battle battle) {
-        this.battle = battle;
-    }
-
-    public List<Player> getPlayers() {
-        return players;
-    }
-
-    public void setPlayers(List<Player> players) {
-        this.players = players;
-    }
-
-    public List<Prize> getPrizes() {
-        return prizes;
-    }
-
-    public List<Pokemon> getAllPokemons() {
-        return allPokemons;
-    }
-
-    public void setAllPokemons(List<Pokemon> allPokemons) {
-        this.allPokemons = allPokemons;
     }
 }

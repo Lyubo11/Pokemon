@@ -13,13 +13,13 @@ public class TestGame {
     public static void listOfPokemons(Game game) {
         Pokemon pikachu = new Pikachu();
         Pokemon slowbro = new Slowbro();
-        Pokemon spectier = new Spectrier();
+        Pokemon spectrier = new Spectrier();
         Pokemon thundurus = new Thundurus();
         Pokemon venusaur = new Venusaur();
 
         game.getAllPokemons().add(pikachu);
         game.getAllPokemons().add(slowbro);
-        game.getAllPokemons().add(spectier);
+        game.getAllPokemons().add(spectrier);
         game.getAllPokemons().add(thundurus);
         game.getAllPokemons().add(venusaur);
 

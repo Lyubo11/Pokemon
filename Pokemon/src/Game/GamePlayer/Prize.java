@@ -1,9 +1,5 @@
 package Game.GamePlayer;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 public class Prize {
     private String medalName;
     private String description;

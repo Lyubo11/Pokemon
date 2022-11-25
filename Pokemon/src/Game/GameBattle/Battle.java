@@ -2,7 +2,6 @@ package Game.GameBattle;
 
 import Game.Game;
 import Game.GamePlayer.Player;
-import Game.GamePlayer.Prize;
 import Game.Pokemon.Pokemon;
 
 import java.util.List;
