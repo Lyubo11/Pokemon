@@ -39,19 +39,19 @@ public class Ability implements Abilityable {
     public void attackCombinedWithFirstAbility(Pokemon pokemon) {
         int finalDamage = pokemon.attacking() + getFirstNormalAbility();
         System.out.println(pokemon.name + " has attacked with his first normal ability!");
-        System.out.println("You have dealt " + (pokemon.getHP() - (finalDamage % (pokemon.getDefense() % 75))) + " damage with your first ability!");
+        System.out.println("You have dealt " + finalDamage + " damage with your first ability!");
     }
 
     public void attackCombinedWithSecondAbility(Pokemon pokemon) {
         int finalDamage = pokemon.attacking() + getSecondNormalAbility();
         System.out.println(pokemon.name + " has attacked with his second normal ability!");
-        System.out.println("You have dealt " + (pokemon.getHP() - (finalDamage % (pokemon.getDefense() % 75))) + " damage with your second ability!");
+        System.out.println("You have dealt " + finalDamage + " damage with your second ability!");
     }
 
     public void attackCombinedWithHiddenAbility(Pokemon pokemon) {
         int finalDamage = pokemon.attacking() + getHiddenAbility();
         System.out.println(pokemon.name + " has attacked with his hidden ability!");
-        System.out.println("You have dealt " + (pokemon.getHP() - (finalDamage % (pokemon.getDefense() % 75))) + " damage with your hidden ability!");
+        System.out.println("You have dealt " + finalDamage + " damage with your hidden ability!");
     }
 
     @Override
