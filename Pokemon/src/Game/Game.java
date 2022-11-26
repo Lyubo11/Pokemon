@@ -28,10 +28,13 @@ public class Game implements Gameable, Winable, Messagable {
     public void makeThreePokemonChoices() {
         System.out.println("Pick three pokemons!");
         int choice = 0;
-        for (int i = 0; i < 3; i++) {
+        int i = 0;
+        while (i < 3) {
             choice = userInput.nextInt();
-            choosePokemon(choice);
             System.out.println();
+            if (choosePokemon(choice)) {
+                i++;
+            }
         }
     }
 
@@ -75,9 +78,11 @@ public class Game implements Gameable, Winable, Messagable {
         if (getBattle().getComputerBattlePoints() < getBattle().getPlayerBattlePoints()) {
             winGameMessage(playerID);
             winCristals(playerID, getBattle().getPlayerBattlePoints());
-        } else {
+        } else if (getBattle().getComputerBattlePoints() > getBattle().getPlayerBattlePoints()){
             winGameMessage(computerID);
             winCristals(computerID, getBattle().getComputerBattlePoints());
+        } else {
+            System.out.println("It's a draw");
         }
     }
 

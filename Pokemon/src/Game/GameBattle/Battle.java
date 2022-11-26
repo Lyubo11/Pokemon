@@ -21,6 +21,16 @@ public class Battle implements Battleable{
         this.battlePlayers = battlePlayers;
         this.playerRoundPoints = 0;
         this.computerRoundPoints = 0;
+        this.playerBattlePoints = 0;
+        this.computerBattlePoints = 0;
+    }
+
+    public int getPlayerRoundPoints() {
+        return playerRoundPoints;
+    }
+
+    public int getComputerRoundPoints() {
+        return computerRoundPoints;
     }
 
     public int getPlayerBattlePoints() {
@@ -172,7 +182,7 @@ public class Battle implements Battleable{
         if (choice >= 1 && choice <= 3) {
             return choice - 1;
         } else {
-            return -1;
+            return -9999;
         }
 
     }
@@ -212,5 +222,23 @@ public class Battle implements Battleable{
         }
 
         System.out.println(this.playerBattlePoints + " : " + this.computerBattlePoints);
+    }
+
+    public void setPlayerBattlePoints(int playerBattlePoints) {
+        if (!(playerBattlePoints < 0)) {
+            this.playerBattlePoints = playerBattlePoints;
+        } else {
+            System.out.println("Invalid input (battle points can't be lower than 0).");
+        }
+
+    }
+
+    public void setComputerBattlePoints(int computerBattlePoints) {
+        if (!(computerBattlePoints < 0)) {
+            this.computerBattlePoints = computerBattlePoints;
+        } else {
+            System.out.println("Invalid input (battle points can't be lower than 0).");
+        }
+
     }
 }
