@@ -15,12 +15,6 @@ public class Slowbro extends Pokemon{
         return super.attacking();
     }
 
-//    @Override
-//    public int reduceDamage(){
-//        super.reduceDamage();
-//        return 0;
-//    }
-
     @Override
     public void trainPokemon() {
         super.trainPokemon();

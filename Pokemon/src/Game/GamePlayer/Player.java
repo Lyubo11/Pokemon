@@ -95,7 +95,6 @@ public class Player{
         } else {
             System.out.println("Invalid experience input!");
         }
-
     }
 
     public List<Pokemon> getPokemons() {

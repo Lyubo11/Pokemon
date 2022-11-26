@@ -116,7 +116,7 @@ public abstract class Pokemon implements Pokemonable, Cloneable {
         if (defense < 5) {
             System.out.println("Your pokemon must have at least 5 defense! \nTry again, buddy!");
         } else if (defense > 230) {
-            System.out.println("Your pokemon can not have more than 190 defense! \nTry again, buddy!");
+            System.out.println("Your pokemon can not have more than 230 defense! \nTry again, buddy!");
         } else {
             System.out.println("Your pokemon has " + defense + " defense! \nLet's go, buddy!");
         }
@@ -159,23 +159,19 @@ public abstract class Pokemon implements Pokemonable, Cloneable {
         return 0;
     }
 
-//    public int reduceDamage(Ability ability) {
-//        if (ability == '1') {
-//            setHP(this.HP - (ability.getFirstNormalAbility() % (getDefense() % 75)));
-//        } else if () {
-//            setHP(this.HP - (ability.getSecondNormalAbility() % (getDefense() % 75)));
-//        } else {
-//            setHP(this.HP - (ability.getHiddenAbility() % (getDefense() % 75)));
-//        }
-//            return this.HP;     //TODO "Your HP has fallen to " + this.HP + "HP!"
-//    }
-
     @Override
     public void trainPokemon() {
-        setPokemonLevel(getPokemonLevel() + 1);
-        setAttack(getAttack() + 1);
-        setDefense(getDefense() + 2);
+        if ((getPokemonLevel() > 0) && (getPokemonLevel() < 100)) {
+            setPokemonLevel(getPokemonLevel() + 1);
+        }
+        if ((getAttack() > 10) && (getAttack() < 190)) {
+            setAttack(getAttack() + 1);
+        }
+        if ((getDefense() > 5) && (getDefense() < 229)) {
+            setDefense(getDefense() + 2);
+        }
     }
+
 
     @Override
     public Object clone() throws CloneNotSupportedException {
