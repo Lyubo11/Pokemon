@@ -1,5 +1,7 @@
 package Game.Pokemon;
 
+import Game.Game;
+
 import java.util.Random;
 
 public abstract class Pokemon implements Pokemonable, Cloneable {
@@ -10,17 +12,19 @@ public abstract class Pokemon implements Pokemonable, Cloneable {
     protected double height;
     protected double weight;
     protected int attack;
+    protected Ability ability;
     protected int defense;
     protected String type;
     protected String weakness;
 
-    public Pokemon(String name, int pokemonLevel, int HP, double height, double weight, int attack, int defense, String type, String weakness) {
+    public Pokemon(String name, int pokemonLevel, int HP, double height, double weight, int attack, Ability ability, int defense, String type, String weakness) {
         this.name = name;
         this.pokemonLevel = pokemonLevel;
         this.HP = HP;
         this.height = height;
         this.weight = weight;
         this.attack = attack;
+        this.ability = ability;
         this.defense = defense;
         this.type = type;
         this.weakness = weakness;
@@ -108,6 +112,14 @@ public abstract class Pokemon implements Pokemonable, Cloneable {
         this.attack = attack;
     }
 
+    public Ability getAbility() {
+        return ability;
+    }
+
+    public void setAbility(Ability ability) {
+        this.ability = ability;
+    }
+
     public int getDefense() {
         return defense;
     }
@@ -159,6 +171,30 @@ public abstract class Pokemon implements Pokemonable, Cloneable {
         return 0;
     }
 
+    public void chooseAbility() {
+        System.out.println("Choose ability to fight with: ");
+        System.out.println("1. First Normal Ability");
+        System.out.println("2. Second Normal Ability");
+        System.out.println("3. Hidden Normal Ability");
+
+        int choice = 0;
+        while (true) {
+            choice = Game.userInput.nextInt();
+            if (choice == 1) {
+                System.out.println(ability.getFirstNormalAbility());
+                break;
+            } else if (choice == 2) {
+                System.out.println(ability.getSecondNormalAbility());
+                break;
+            } else if (choice == 3) {
+                System.out.println(ability.getHiddenAbility());
+                break;
+            } else {
+                System.out.println("Invalid Input! \nThere is no such choice!");
+            }
+        }
+    }
+
     @Override
     public void trainPokemon() {
         if ((getPokemonLevel() > 0) && (getPokemonLevel() < 100)) {
@@ -171,7 +207,6 @@ public abstract class Pokemon implements Pokemonable, Cloneable {
             setDefense(getDefense() + 2);
         }
     }
-
 
     @Override
     public Object clone() throws CloneNotSupportedException {

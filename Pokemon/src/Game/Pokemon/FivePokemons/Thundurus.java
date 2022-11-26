@@ -1,14 +1,15 @@
 package Game.Pokemon.FivePokemons;
 
+import Game.Pokemon.Ability;
 import Game.Pokemon.Pokemon;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class Thundurus extends Pokemon{
+public class Thundurus extends Pokemon {
 
-    public Thundurus(){
-        super("Thundurus", 81, 79, 1.5, 61, 115, 70, "ELECTRIC and FLYING", "ICE and ROCK");
+    public Thundurus() {
+        super("Thundurus", 81, 79, 1.5, 61, 115, new Ability(), 70, "ELECTRIC and FLYING", "ICE and ROCK");
     }
 
     @Override

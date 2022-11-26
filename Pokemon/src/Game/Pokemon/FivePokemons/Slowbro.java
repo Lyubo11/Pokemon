@@ -1,13 +1,14 @@
 package Game.Pokemon.FivePokemons;
 
+import Game.Pokemon.Ability;
 import Game.Pokemon.Pokemon;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class Slowbro extends Pokemon{
+public class Slowbro extends Pokemon {
     public Slowbro() {
-        super("Slowbro", 40, 95, 1.6, 78.5, 75, 110, "WATER and PSYCHIC", "GHOST, DARK, GRASS, ELECTRIC and BUG");
+        super("Slowbro", 40, 95, 1.6, 78.5, 75, new Ability(), 110, "WATER and PSYCHIC", "GHOST, DARK, GRASS, ELECTRIC and BUG");
     }
 
     @Override

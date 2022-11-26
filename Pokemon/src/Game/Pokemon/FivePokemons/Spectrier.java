@@ -1,14 +1,15 @@
 package Game.Pokemon.FivePokemons;
 
+import Game.Pokemon.Ability;
 import Game.Pokemon.Pokemon;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class Spectrier extends Pokemon{
+public class Spectrier extends Pokemon {
 
-    public Spectrier(){
-        super("Spectrier", 100, 100, 2, 44.5, 65, 60, "GHOST", "GHOST and DARK");
+    public Spectrier() {
+        super("Spectrier", 100, 100, 2, 44.5, 65, new Ability(), 60, "GHOST", "GHOST and DARK");
     }
 
     @Override

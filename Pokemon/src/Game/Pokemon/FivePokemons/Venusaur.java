@@ -1,5 +1,6 @@
 package Game.Pokemon.FivePokemons;
 
+import Game.Pokemon.Ability;
 import Game.Pokemon.Pokemon;
 
 import java.util.Timer;
@@ -8,7 +9,7 @@ import java.util.TimerTask;
 public class Venusaur extends Pokemon {
 
     public Venusaur() {
-        super("Venusaur", 75, 80, 2, 100, 82, 83, "GRASS and POISON", "FIRE, PSYCHICS, FLYING and ICE");
+        super("Venusaur", 75, 80, 2, 100, 82, new Ability(), 83, "GRASS and POISON", "FIRE, PSYCHICS, FLYING and ICE");
     }
 
     @Override
