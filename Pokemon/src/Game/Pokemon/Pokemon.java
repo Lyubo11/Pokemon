@@ -159,17 +159,6 @@ public abstract class Pokemon implements Pokemonable, Cloneable {
         return 0;
     }
 
-//    public int reduceDamage(Ability ability) {
-//        if (ability == '1') {
-//            setHP(this.HP - (ability.getFirstNormalAbility() % (getDefense() % 75)));
-//        } else if () {
-//            setHP(this.HP - (ability.getSecondNormalAbility() % (getDefense() % 75)));
-//        } else {
-//            setHP(this.HP - (ability.getHiddenAbility() % (getDefense() % 75)));
-//        }
-//            return this.HP;     //TODO "Your HP has fallen to " + this.HP + "HP!"
-//    }
-
     @Override
     public void trainPokemon() {
         setPokemonLevel(getPokemonLevel() + 1);
