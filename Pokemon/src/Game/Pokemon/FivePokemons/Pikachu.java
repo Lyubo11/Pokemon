@@ -1,5 +1,6 @@
 package Game.Pokemon.FivePokemons;
 
+import Game.Pokemon.Ability;
 import Game.Pokemon.Pokemon;
 
 import java.util.Timer;
@@ -8,19 +9,13 @@ import java.util.TimerTask;
 public class Pikachu extends Pokemon {
 
     public Pikachu() {
-        super("Pikachu", 55, 60, 0.4, 6, 55, 40, "ELECTRIC", "GROUND");
+        super("Pikachu", 55, 60, 0.4, 6, 55, new Ability(), 40, "ELECTRIC", "GROUND");
     }
 
     @Override
     public int attacking() {
         return super.attacking();
     }
-
-//    @Override
-//    public int reduceDamage(){
-//        super.reduceDamage();
-//        return 0;
-//    }
 
     @Override
     public void trainPokemon() {

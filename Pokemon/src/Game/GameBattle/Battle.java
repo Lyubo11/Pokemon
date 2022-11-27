@@ -106,7 +106,12 @@ public class Battle implements Battleable{
 
             pokemonHealthBefore = pokemon.getHP();
             System.out.println(pokemon.getName() + " health before attack: " + pokemonHealthBefore);
-            pokemon.attacking();
+            if (!player.getUserName().startsWith("bot-")) {
+                pokemon.setHP(pokemon.attacking());
+            } else {
+                pokemon.chooseAbility();
+            }
+
             pokemonHealthAfter = pokemon.getHP();
             System.out.println(pokemon.getName() + " health after attack: " + pokemonHealthAfter);
             System.out.println(player.getUserName() + "'s pokemon has lost " + (pokemonHealthBefore - pokemonHealthAfter) + "HP.");

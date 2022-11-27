@@ -1,5 +1,7 @@
 package Game.Pokemon;
 
+import Game.Game;
+
 import java.util.Random;
 
 public abstract class Pokemon implements Pokemonable, Cloneable {
@@ -10,17 +12,19 @@ public abstract class Pokemon implements Pokemonable, Cloneable {
     protected double height;
     protected double weight;
     protected int attack;
+    protected Ability ability;
     protected int defense;
     protected String type;
     protected String weakness;
 
-    public Pokemon(String name, int pokemonLevel, int HP, double height, double weight, int attack, int defense, String type, String weakness) {
+    public Pokemon(String name, int pokemonLevel, int HP, double height, double weight, int attack, Ability ability, int defense, String type, String weakness) {
         this.name = name;
         this.pokemonLevel = pokemonLevel;
         this.HP = HP;
         this.height = height;
         this.weight = weight;
         this.attack = attack;
+        this.ability = ability;
         this.defense = defense;
         this.type = type;
         this.weakness = weakness;
@@ -116,7 +120,7 @@ public abstract class Pokemon implements Pokemonable, Cloneable {
         if (defense < 5) {
             System.out.println("Your pokemon must have at least 5 defense! \nTry again, buddy!");
         } else if (defense > 230) {
-            System.out.println("Your pokemon can not have more than 190 defense! \nTry again, buddy!");
+            System.out.println("Your pokemon can not have more than 230 defense! \nTry again, buddy!");
         } else {
             System.out.println("Your pokemon has " + defense + " defense! \nLet's go, buddy!");
         }
@@ -142,28 +146,57 @@ public abstract class Pokemon implements Pokemonable, Cloneable {
     public int attacking() {
         Random rand = new Random();
         if (this.pokemonLevel > 0 && this.pokemonLevel <= 20) {
-            setHP(getHP() - (rand.nextInt(10) + 10));
+            return (getHP() - (rand.nextInt(10) + 10));
         } else if (this.pokemonLevel > 20 && this.pokemonLevel <= 40) {
-            setHP(getHP() - (rand.nextInt(20) + 10));
+            return (getHP() - (rand.nextInt(20) + 10));
         } else if (this.pokemonLevel > 40 && this.pokemonLevel <= 60) {
-            setHP(getHP() - (rand.nextInt(20) + 20));
+            return (getHP() - (rand.nextInt(20) + 20));
         } else if (this.pokemonLevel > 60 && this.pokemonLevel <= 80) {
-            setHP(getHP() - (rand.nextInt(25) + 20));
+            return (getHP() - (rand.nextInt(25) + 20));
         } else if (this.pokemonLevel > 80 && this.pokemonLevel <= 99) {
-            setHP(getHP() - (rand.nextInt(30) + 20));
+            return (getHP() - (rand.nextInt(30) + 20));
         } else if (this.pokemonLevel == 100) {
-            setHP(getHP() - (rand.nextInt(40) + 40));
+            return (getHP() - (rand.nextInt(40) + 40));
         } else {
             return 0;
         }
-        return 0;
+    }
+
+    public void chooseAbility() {
+        System.out.println("Choose ability to fight with: ");
+        System.out.println("1. First Normal Ability");
+        System.out.println("2. Second Normal Ability");
+        System.out.println("3. Hidden Normal Ability");
+
+        int choice = 0;
+        while (true) {
+            choice = Game.userInput.nextInt();
+            if (choice == 1) {
+                setHP(attacking() + ability.getFirstNormalAbility());
+                break;
+            } else if (choice == 2) {
+                setHP(attacking() + ability.getSecondNormalAbility());
+                break;
+            } else if (choice == 3) {
+                setHP(attacking() + ability.getHiddenAbility());
+                break;
+            } else {
+                System.out.println("Invalid Input! \nThere is no such choice!");
+            }
+        }
     }
 
     @Override
     public void trainPokemon() {
-        setPokemonLevel(getPokemonLevel() + 1);
-        setAttack(getAttack() + 1);
-        setDefense(getDefense() + 2);
+        if ((getPokemonLevel() > 0) && (getPokemonLevel() < 100)) {
+            setPokemonLevel(getPokemonLevel() + 1);
+        }
+        if ((getAttack() > 10) && (getAttack() < 190)) {
+            setAttack(getAttack() + 1);
+        }
+        if ((getDefense() > 5) && (getDefense() < 229)) {
+            setDefense(getDefense() + 2);
+        }
     }
 
     @Override
