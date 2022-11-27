@@ -1,6 +1,5 @@
 package Game.Pokemon.FivePokemons;
 
-import Game.Pokemon.Ability;
 import Game.Pokemon.Pokemon;
 
 import java.util.Timer;
@@ -9,7 +8,7 @@ import java.util.TimerTask;
 public class Pikachu extends Pokemon {
 
     public Pikachu() {
-        super("Pikachu", 55, 60, 0.4, 6, 55, new Ability(), 40, "ELECTRIC", "GROUND");
+        super("Pikachu", 55, 60, 0.4, 6, 55, 40, "ELECTRIC", "GROUND");
     }
 
     @Override
@@ -25,33 +24,11 @@ public class Pikachu extends Pokemon {
     @Override
     public void cryMessage() {
         System.out.print("Pika");
-        new Timer().scheduleAtFixedRate(new TimerTask() {
-            int times = 0;
-
-            public void run() {
-                ++times;
-                System.out.print("a");
-                if (times == 2) {
-                    System.out.println();
-                    cancel();
-                }
-            }
-        }, 1000, 1000);
+        timer(2, "a");
 
         System.out.print(" chu");
 
-        new Timer().scheduleAtFixedRate(new TimerTask() {
-            int times = 0;
-
-            public void run() {
-                ++times;
-                System.out.print("u");
-                if (times == 4) {
-                    System.out.println();
-                    cancel();
-                }
-            }
-        }, 1000, 1000);
+        timer(4, "u");
     }
 
     @Override

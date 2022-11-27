@@ -1,6 +1,5 @@
 package Game.Pokemon.FivePokemons;
 
-import Game.Pokemon.Ability;
 import Game.Pokemon.Pokemon;
 
 import java.util.Timer;
@@ -9,7 +8,7 @@ import java.util.TimerTask;
 public class Spectrier extends Pokemon{
 
     public Spectrier(){
-        super("Spectrier", 100, 100, 2, 44.5, 65, new Ability(), 60, "GHOST", "GHOST and DARK");
+        super("Spectrier", 100, 100, 2, 44.5, 65, 60, "GHOST", "GHOST and DARK");
     }
 
     @Override
@@ -25,18 +24,7 @@ public class Spectrier extends Pokemon{
     @Override
     public void cryMessage() {
         System.out.print("Spectrie");
-        new Timer().scheduleAtFixedRate(new TimerTask() {
-            int times = 0;
-
-            public void run() {
-                ++times;
-                System.out.print("r");
-                if (times == 5) {
-                    System.out.println();
-                    cancel();
-                }
-            }
-        }, 1000, 1000);
+        timer(5, "r");
     }
 
     @Override

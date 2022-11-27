@@ -4,6 +4,7 @@ import Game.Game;
 import Game.GamePlayer.Player;
 import Game.GamePlayer.Prize;
 import Game.Pokemon.Pokemon;
+import java.util.concurrent.TimeUnit;
 
 import java.util.List;
 import java.util.Random;
@@ -110,6 +111,13 @@ public class Battle implements Battleable{
                 pokemon.setHP(pokemon.attacking());
             } else {
                 pokemon.chooseAbility();
+                battlePlayers.get(0).getRoundPokemons().get(choice-1).cryMessage();
+                try {
+                    TimeUnit.SECONDS.sleep(5);
+                } catch (Exception e) {
+                    System.out.println("");
+                }
+
             }
 
             pokemonHealthAfter = pokemon.getHP();

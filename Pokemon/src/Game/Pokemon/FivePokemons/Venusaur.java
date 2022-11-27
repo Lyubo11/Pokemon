@@ -1,6 +1,5 @@
 package Game.Pokemon.FivePokemons;
 
-import Game.Pokemon.Ability;
 import Game.Pokemon.Pokemon;
 
 import java.util.Timer;
@@ -9,7 +8,7 @@ import java.util.TimerTask;
 public class Venusaur extends Pokemon {
 
     public Venusaur() {
-        super("Venusaur", 75, 80, 2, 100, 82, new Ability(), 83, "GRASS and POISON", "FIRE, PSYCHICS, FLYING and ICE");
+        super("Venusaur", 75, 80, 2, 100, 82, 83, "GRASS and POISON", "FIRE, PSYCHICS, FLYING and ICE");
     }
 
     @Override
@@ -25,33 +24,11 @@ public class Venusaur extends Pokemon {
     @Override
     public void cryMessage() {
         System.out.print("Venu");
-        new Timer().scheduleAtFixedRate(new TimerTask() {
-            int times = 0;
-
-            public void run() {
-                ++times;
-                System.out.print("u");
-                if (times == 2) {
-                    System.out.println();
-                    cancel();
-                }
-            }
-        }, 1000, 1000);
+        timer(2, "u");
 
         System.out.print("sau");
 
-        new Timer().scheduleAtFixedRate(new TimerTask() {
-            int times = 0;
-
-            public void run() {
-                ++times;
-                System.out.print("u");
-                if (times == 4) {
-                    System.out.println();
-                    cancel();
-                }
-            }
-        }, 1000, 1000);
+        timer(4, "u");
 
         System.out.print("r");
     }

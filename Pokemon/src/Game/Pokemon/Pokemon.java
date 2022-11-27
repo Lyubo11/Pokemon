@@ -3,6 +3,8 @@ package Game.Pokemon;
 import Game.Game;
 
 import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public abstract class Pokemon implements Pokemonable, Cloneable {
     protected String name;
@@ -12,19 +14,23 @@ public abstract class Pokemon implements Pokemonable, Cloneable {
     protected double height;
     protected double weight;
     protected int attack;
-    protected Ability ability;
+    protected int firstNormalAbility;
+    protected int secondNormalAbility;
+    protected int hiddenAbility;
     protected int defense;
     protected String type;
     protected String weakness;
 
-    public Pokemon(String name, int pokemonLevel, int HP, double height, double weight, int attack, Ability ability, int defense, String type, String weakness) {
+    public Pokemon(String name, int pokemonLevel, int HP, double height, double weight, int attack, int defense, String type, String weakness) {
         this.name = name;
         this.pokemonLevel = pokemonLevel;
         this.HP = HP;
         this.height = height;
         this.weight = weight;
         this.attack = attack;
-        this.ability = ability;
+        this.firstNormalAbility = 2;
+        this.secondNormalAbility = 3;
+        this.hiddenAbility = 5;
         this.defense = defense;
         this.type = type;
         this.weakness = weakness;
@@ -112,6 +118,30 @@ public abstract class Pokemon implements Pokemonable, Cloneable {
         this.attack = attack;
     }
 
+    public int getFirstNormalAbility() {
+        return firstNormalAbility;
+    }
+
+    public void setFirstNormalAbility(int firstNormalAbility) {
+        this.firstNormalAbility = firstNormalAbility;
+    }
+
+    public int getSecondNormalAbility() {
+        return secondNormalAbility;
+    }
+
+    public void setSecondNormalAbility(int secondNormalAbility) {
+        this.secondNormalAbility = secondNormalAbility;
+    }
+
+    public int getHiddenAbility() {
+        return hiddenAbility;
+    }
+
+    public void setHiddenAbility(int hiddenAbility) {
+        this.hiddenAbility = hiddenAbility;
+    }
+
     public int getDefense() {
         return defense;
     }
@@ -172,13 +202,13 @@ public abstract class Pokemon implements Pokemonable, Cloneable {
         while (true) {
             choice = Game.userInput.nextInt();
             if (choice == 1) {
-                setHP(attacking() + ability.getFirstNormalAbility());
+                setHP(attacking() + getFirstNormalAbility());
                 break;
             } else if (choice == 2) {
-                setHP(attacking() + ability.getSecondNormalAbility());
+                setHP(attacking() + getSecondNormalAbility());
                 break;
             } else if (choice == 3) {
-                setHP(attacking() + ability.getHiddenAbility());
+                setHP(attacking() + getHiddenAbility());
                 break;
             } else {
                 System.out.println("Invalid Input! \nThere is no such choice!");
@@ -205,6 +235,21 @@ public abstract class Pokemon implements Pokemonable, Cloneable {
     }
 
     public abstract void cryMessage();
+
+    public void timer(int timesCount, String cryLetter) {
+        new Timer().scheduleAtFixedRate(new TimerTask() {
+            int times = 0;
+
+            public void run() {
+                ++times;
+                System.out.print(cryLetter);
+                if (times == timesCount) {
+                    System.out.println();
+                    cancel();
+                }
+            }
+        }, 1000, 1000);
+    };
 
     @Override
     public String toString() {

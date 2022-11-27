@@ -50,13 +50,13 @@ public class TestGame {
     }
 
     public static void generateGamePrizes(Game game) {
-        Prize pokeballs = new Prize("Pokeballs", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi mattis.");
-        Prize money = new Prize("money", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin rhoncus.");
-        Prize RP = new Prize("RP", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eget.");
-        Prize tournamentCup = new Prize("Tournament cup", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur eget.");
-        Prize stars = new Prize("Stars", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin pretium.");
-        Prize goldenSkunk = new Prize("Golden skunk", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vestibulum.");
-        Prize honeyHeart = new Prize("Honey heart", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut ac.");
+        Prize pokeballs = new Prize("Pokeballs", "Your reward for winning in this tournament is: Pokeballs");
+        Prize money = new Prize("money", "Your reward for winning in this tournament is: money ($)");
+        Prize RP = new Prize("RP", "Your reward for winning in this tournament is: RP");
+        Prize tournamentCup = new Prize("Tournament cup", "Your reward for winning in this tournament is: Tournament cup");
+        Prize stars = new Prize("Stars", "Your reward for winning in this tournament is: Stars");
+        Prize goldenSkunk = new Prize("Golden skunk", "Your reward for winning in this tournament is: Golden skunk");
+        Prize honeyHeart = new Prize("Honey heart", "Your reward for winning in this tournament is: Honey heart");
 
         game.getPrizes().add(pokeballs);
         game.getPrizes().add(money);
